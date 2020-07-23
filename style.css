@@ -1,0 +1,216 @@
+
+        
+        body{
+            font-variant: small-caps !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container{
+            max-width: 400px;
+            margin: auto;
+            padding: 72px;
+        }
+
+        h1{
+            text-align: center;
+            font-size: 1.8em;
+        }
+
+        .campo{
+            margin: 0.3rem;
+            display: inline-block;
+        }
+
+        .form{
+            text-align: center;
+        }
+
+        .submit{
+            margin-top: 10px;
+        }
+
+        .lista{
+            border-style: solid;
+            border-color: #aaa;
+            border-radius: 1rem;
+            list-style: none;
+            padding: 1rem;
+        }
+
+        .tarefa{
+            padding: 0.3rem 0rem;
+        }
+
+        .google{
+            margin: auto;
+            display: block;
+            max-width: 200px;
+        }
+
+        .mainHeader{
+            background-color: rgb(72, 77, 75);
+            width: 100%;
+            position: fixed;
+        }
+
+        .logo{
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            margin: 1rem;
+        }
+
+        .logo img{
+            height: 40px;
+        }
+
+        .mainMenu{
+            list-style: none;
+            display: inline-block;
+        }
+        
+        .mainItem{
+            display: inline-block;
+        }
+
+        .mainLink:hover{
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .mainLink{
+            text-decoration: none;
+            color: #fefefe;
+            padding: 1rem;
+        }
+
+        .subMenu{
+            position: absolute;
+            list-style: none;
+            display: none;
+            padding: 0;
+            background-color: rgb(72, 77, 75);
+        }
+
+        .subMenuItem{
+            margin: 20px 0;
+        }
+
+        .mainItem:hover .subMenu{
+            display: block;
+        }
+
+        table{
+            margin-left: -20px;
+            border-collapse: collapse;
+        }
+
+        td, th{
+            border: 1px solid;
+            padding: 0.5rem;
+            text-align: center;
+        }
+
+        .calculadora{
+            font-size: 2rem;
+        }
+
+        .calculadora td, .calculadora th{
+            min-height: 5rem;
+            min-width: 4rem;
+            padding: 1rem 0.5rem;
+            cursor: pointer;
+        }
+
+        table input[type="text"]{
+            font-variant: small-caps;
+            border: none;
+        }
+
+        table input[type="text"]:focus{
+            outline: none;
+        }
+
+        .tarefa{
+            text-align: left;
+        }
+
+        #menu{
+            display: none;
+        }
+
+        #feedback{
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            margin: 1rem;
+            background-color: purple;
+            padding: 0.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        #calc{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            margin: 1rem;
+            background-color: purple;
+            padding: 0.4rem;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 1rem;
+        }
+
+        #calculadora{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            margin: 3.5rem 1rem;
+            background-color: #fefefe;
+            padding: 0.2rem;
+        }
+
+        #topo{
+            position: sticky;
+            top: 95vh;
+            margin: 1rem;
+            background-color: purple;
+            padding: 0.5rem;
+            color: white;
+        }
+
+        @media (max-width: 920px){
+            #menu{
+                display: block;
+            }
+
+            .mainMenu{
+                text-align: right;
+                display: block;
+                margin: 0;
+                padding: 0;
+                margin-top: -40px;
+                height: 40px;
+                overflow: hidden;
+            }
+
+            #menu:hover .mainMenu{
+                height: auto;
+            }
+
+            .mainItem{
+                display: block;
+                padding: 1rem;
+            }
+
+            .subMenu{
+                position: relative;
+                list-style: none;
+                display: none;
+                padding: 0;
+                background-color: rgb(72, 77, 75);
+            }
+
+        }

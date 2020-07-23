@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>Lista de Tarefas</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="mainHeader">
+        <span class="logo"><img src="keep.png" /></span>
+        <ul class="mainMenu">
+            <li class="mainItem" id="menu"><a id="linkmenu" class="mainLink" href="#">menu</a></li>
+            <li class="mainItem"><a class="mainLink" href="#">Tarefas</a></li>
+            <li class="mainItem"><a class="mainLink" href="#">Sobre</a></li>
+            <li class="mainItem">
+                <a class="mainLink" href="#">Ajuda</a>
+                <ul class="subMenu">
+                    <li class="subMenuItem">
+                        <a class="mainLink" href="#">Canais de Atendimento</a>
+                    </li>
+                    <li class="subMenuItem">
+                        <a class="mainLink" href="#">Tire suas Duvidas</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+    <main class="container">
+        <h1>Lista de Tarefas</h1>
+
+        <br />
+        <!--
+            <form class="form">
+                <div class="campo">
+                    <label for="novo">Tarefa</label> <br/>
+                    <input type="text" name="novo" id="novo"/><br/>
+                </div>
+                <div class="campo">
+                    <label for="data">Data de Entrega</label> <br/>
+                    <input type="date" name="data" id="data"/><br/>
+                </div>
+                <div class="submit">
+                    <input type="submit" value="Adicionar"/><br/><br/>
+                </div>
+            </form>
+
+            <ul class="lista">
+                <li class="tarefa"> <input type="checkbox"/> Estudar CSS | Entrega até 21/07/2020</li>
+                <li class="tarefa"> <input type="checkbox"/> Entregar Sprint | Entrega até 27/07/2020</li>
+            </ul>
+            -->
+        <table cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Tarefa</th>
+                    <th>Entrega</th>
+                    <th>Situação</th>
+                </tr>
+            </thead>
+            <tbody id="tarefas">
+                <tr id="linha1">
+                    <td>1</td>
+                    <td>Estudar HTML</td>
+                    <td>21/07/2020</td>
+                    <td><input id="situacao1" value="S" type="checkbox" onclick="checkTarefa(1)" /></td>
+                </tr>
+                <tr id="linha2">
+                    <td>2</td>
+                    <td>Estudar CSS</td>
+                    <td>27/07/2020</td>
+                    <td><input id="situacao2" value="S" type="checkbox" onclick="checkTarefa(2)" /></td>
+                </tr>
+                <tr id="linha3">
+                    <td>3</td>
+                    <td>Estudar JS</td>
+                    <td>28/07/2020</td>
+                    <td><input id="situacao3" value="S" type="checkbox" onclick="checkTarefa(3)" /></td>
+                </tr>
+                <tr id="linha4">
+                    <td>4</td>
+                    <td>Entregar Sprint</td>
+                    <td>30/07/2020</td>
+                    <td><input id="situacao4" value="S" type="checkbox" onclick="checkTarefa(4)" /></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr id="formulario">
+                    <td colspan="2"><input type="text" name="novo" id="novo"></td>
+                    <td><input type="date" name="data" id="data"></td>
+                    <td><input type="submit" id="adicionar" value="Adicionar"></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <img src="google.jpg" class="google" />
+
+        <table style="display: none;" id="calculadora" class="calculadora" cellspacing="0">
+            <thead>
+                <tr>
+                    <th colspan="4"> Calculadora Padrão</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="visor" style="text-align:right;" colspan="4">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td id="C">C</td>
+                    <td id="D">del</td>
+                    <td id="/">/</td>
+                    <td id="*">*</td>
+                </tr>
+                <tr>
+                    <td id="7">7</td>
+                    <td id="8">8</td>
+                    <td id="9">9</td>
+                    <td id="-">-</td>
+                </tr>
+                <tr>
+                    <td id="4">4</td>
+                    <td id="5">5</td>
+                    <td id="6">6</td>
+                    <td id="+">+</td>
+                </tr>
+                <tr>
+                    <td id="1">1</td>
+                    <td id="2">2</td>
+                    <td id="3">3</td>
+                    <td style="padding: 0; vertical-align: top;" id="E" rowspan="2">enter</td>
+                </tr>
+                <tr>
+                    <td id="0" colspan="2">0</td>
+                    <td id=".">.</td>
+                </tr>
+            </tbody>
+
+
+        </table>
+
+    </main>
+
+    <!--
+        <br/><br/><br/>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        
+        <span id="topo">Topo</span>
+    
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        -->
+    <span id="feedback">Feedback</span>
+    <span id="calc">Calculadora</span>
+    <script>
+        let id = 4;
+        limpar();
+        document.getElementById('0').onclick = () => imprime(document.getElementById('0').innerHTML);
+        document.getElementById('1').onclick = () => imprime(document.getElementById('1').innerHTML);
+        document.getElementById('2').onclick = () => imprime(document.getElementById('2').innerHTML);
+        document.getElementById('3').onclick = () => imprime(document.getElementById('3').innerHTML);
+        document.getElementById('4').onclick = () => imprime(document.getElementById('4').innerHTML);
+        document.getElementById('5').onclick = () => imprime(document.getElementById('5').innerHTML);
+        document.getElementById('6').onclick = () => imprime(document.getElementById('6').innerHTML);
+        document.getElementById('7').onclick = () => imprime(document.getElementById('7').innerHTML);
+        document.getElementById('8').onclick = () => imprime(document.getElementById('8').innerHTML);
+        document.getElementById('9').onclick = () => imprime(document.getElementById('9').innerHTML);
+        document.getElementById('/').onclick = () => imprimeOperacao(document.getElementById('/').innerHTML);
+        document.getElementById('*').onclick = () => imprimeOperacao(document.getElementById('*').innerHTML);
+        document.getElementById('-').onclick = () => imprimeOperacao(document.getElementById('-').innerHTML);
+        document.getElementById('+').onclick = () => imprimeOperacao(document.getElementById('+').innerHTML);
+        document.getElementById('.').onclick = () => imprimeOperacao(document.getElementById('.').innerHTML);
+        document.getElementById('C').onclick = () => limpar();
+        document.getElementById('D').onclick = () => deleta();
+        document.getElementById('E').onclick = () => calcula();
+
+        document.getElementById('adicionar').onclick = function () {
+            const tarefa = document.getElementById('novo').value;
+            const data = document.getElementById('data').value;
+            if (tarefa != "" && data != "") {
+                const tabela = document.getElementById('tarefas');
+                id++;
+                let tr = document.createElement('tr');
+                tr.id = "linha" + id;
+                let td = document.createElement('td');
+                td.innerText = id;
+                tr.append(td);
+                td = document.createElement('td');
+                td.innerText = tarefa;
+                tr.append(td);
+                td = document.createElement('td');
+                td.innerText = formataData(data);
+                tr.append(td);
+                td = document.createElement('td');
+                let input = document.createElement('input');
+                input.type = 'checkbox';
+                input.id = 'situacao' + id;
+                input.onclick = () => checkTarefa(id);
+                input.value = 'S';
+                td.append(input);
+                tr.append(td);
+                tabela.append(tr);
+                document.getElementById('novo').value = "";
+                document.getElementById('data').value = "";
+            }
+        }
+
+        function checkTarefa(id) {
+            let tr = document.getElementById("linha"+id);
+            const tabela = document.getElementById('tarefas');
+            const situacao = document.getElementById('situacao'+id).checked;
+            tabela.removeChild(tr);
+            if(situacao){
+                tr.style.backgroundColor = "#ddd";
+                tabela.append(tr);
+            }else{
+                let primeiratr = document.getElementById('tarefas').rows[0];
+                tr.removeAttribute("style");
+                tabela.insertBefore(tr, primeiratr);
+            }
+        }
+
+        function formataData(data) {
+            let anomesdia = data.split("-");
+            return anomesdia[2] + '/' + anomesdia[1] + '/' + anomesdia[0];
+        }
+
+        document.getElementById('linkmenu').onclick = function () {
+            let menu = document.getElementsByClassName('mainMenu')[0];
+            if (menu.style.height === "auto") {
+                menu.removeAttribute("style");
+            } else {
+                menu.style.height = "auto";
+            }
+        }
+
+        document.getElementById('calc').onclick = function () {
+            let calculadora = document.getElementById('calculadora');
+            if (calculadora.style.display == "none") {
+                calculadora.removeAttribute("style");
+            } else {
+                calculadora.style.display = 'none';
+            }
+        }
+
+        function imprime(valor) {
+            let visor = document.getElementById('visor');
+            if (!Number.isNaN(parseInt(valor)) && visor.innerHTML == "0") {
+                visor.innerHTML = valor;
+            } else {
+                visor.innerHTML = visor.innerHTML + valor;
+            }
+        }
+
+        function imprimeOperacao(valor) {
+            let visor = document.getElementById('visor');
+            let ultimoChar = parseInt(visor.innerHTML.substr(visor.innerHTML.length - 1));
+            if (visor.innerHTML != "" && !Number.isNaN(ultimoChar)) {
+                imprime(valor);
+            }
+        }
+
+        function imprimeCalcula(valor) {
+
+        }
+
+        function limpar() {
+            document.getElementById('visor').innerHTML = "0";
+        }
+
+        function deleta() {
+            let visor = document.getElementById('visor');
+            visor.innerHTML = visor.innerHTML.substring(0, visor.innerHTML.length - 1);
+
+            if (visor.innerHTML == "") {
+                visor.innerHTML = "0";
+            }
+        }
+
+        function calcula() {
+            let visor = document.getElementById('visor');
+            let ultimoChar = parseInt(visor.innerHTML.substr(visor.innerHTML.length - 1));
+            if (visor.innerHTML != "" && !Number.isNaN(ultimoChar)) {
+                let valor = eval(visor.innerHTML);
+                visor.innerHTML = valor;
+            }
+        }
+    </script>
+</body>
+
+</html>
