@@ -1,216 +1,186 @@
+body {
+    font-variant: small-caps !important;
+    margin: 0;
+    padding: 0;
+}
 
-        
-        body{
-            font-variant: small-caps !important;
-            margin: 0;
-            padding: 0;
-        }
+h1 {
+    text-align: center;
+    font-size: 1.8em;
+}
 
-        .container{
-            max-width: 400px;
-            margin: auto;
-            padding: 72px;
-        }
+.mainHeader {
+    background-color: rgb(72, 77, 75);
+    width: 100%;
+    position: fixed;
+    display: flex;
+    padding: 1rem;
+}
 
-        h1{
-            text-align: center;
-            font-size: 1.8em;
-        }
+.logo {
+    width: 40px;
+    height: 40px;
+}
 
-        .campo{
-            margin: 0.3rem;
-            display: inline-block;
-        }
+.logo img {
+    height: 40px;
+}
 
-        .form{
-            text-align: center;
-        }
+.mainMenu {
+    list-style: none;
+}
 
-        .submit{
-            margin-top: 10px;
-        }
+.mainItem {
+    display: inline-block;
+}
 
-        .lista{
-            border-style: solid;
-            border-color: #aaa;
-            border-radius: 1rem;
-            list-style: none;
-            padding: 1rem;
-        }
+.mainLink:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
 
-        .tarefa{
-            padding: 0.3rem 0rem;
-        }
+.mainLink {
+    text-decoration: none;
+    color: #fefefe;
+    padding: 1rem;
+}
 
-        .google{
-            margin: auto;
-            display: block;
-            max-width: 200px;
-        }
+#menu {
+    display: none;
+}
 
-        .mainHeader{
-            background-color: rgb(72, 77, 75);
-            width: 100%;
-            position: fixed;
-        }
+.subMenu {
+    position: absolute;
+    list-style: none;
+    display: none;
+    padding: 0;
+    background-color: rgb(72, 77, 75);
+}
 
-        .logo{
-            width: 40px;
-            height: 40px;
-            display: inline-block;
-            margin: 1rem;
-        }
+.subMenuItem {
+    margin: 20px 0;
+}
 
-        .logo img{
-            height: 40px;
-        }
+.mainItem:hover .subMenu {
+    display: block;
+}
 
-        .mainMenu{
-            list-style: none;
-            display: inline-block;
-        }
-        
-        .mainItem{
-            display: inline-block;
-        }
+@media (max-width: 920px) {
+    #menu {
+        display: block;
+    }
+    .mainMenu {
+        text-align: right;
+        display: block;
+        margin: 0;
+        padding: 0;
+        margin-top: -40px;
+        height: 40px;
+        overflow: hidden;
+    }
+    .mainItem {
+        display: block;
+        padding: 1rem;
+    }
+    .subMenu {
+        position: relative;
+        list-style: none;
+        display: none;
+        padding: 0;
+        background-color: rgb(72, 77, 75);
+    }
+}
 
-        .mainLink:hover{
-            color: rgba(255,255,255,0.8);
-        }
-        
-        .mainLink{
-            text-decoration: none;
-            color: #fefefe;
-            padding: 1rem;
-        }
+.container {
+    margin: auto;
+    padding: 72px;
+}
 
-        .subMenu{
-            position: absolute;
-            list-style: none;
-            display: none;
-            padding: 0;
-            background-color: rgb(72, 77, 75);
-        }
+.lista{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 
-        .subMenuItem{
-            margin: 20px 0;
-        }
+table {
+    border-collapse: collapse;
+}
 
-        .mainItem:hover .subMenu{
-            display: block;
-        }
+td, th {
+    border: 1px solid;
+    padding: 0.5rem;
+    text-align: center;
+}
 
-        table{
-            margin-left: -20px;
-            border-collapse: collapse;
-        }
+table input[type="text"] {
+    font-variant: small-caps;
+    border: none;
+}
 
-        td, th{
-            border: 1px solid;
-            padding: 0.5rem;
-            text-align: center;
-        }
+table input[type="text"]:focus {
+    outline: none;
+}
 
-        .calculadora{
-            font-size: 2rem;
-        }
+.tarefa {
+    text-align: left;
+}
 
-        .calculadora td, .calculadora th{
-            min-height: 5rem;
-            min-width: 4rem;
-            padding: 1rem 0.5rem;
-            cursor: pointer;
-        }
+/*
+.google {
+    margin: auto;
+    display: block;
+    max-width: 200px;
+}
 
-        table input[type="text"]{
-            font-variant: small-caps;
-            border: none;
-        }
+#feedback{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 1rem;
+    background-color: purple;
+    padding: 0.5rem;
+    color: white;
+    cursor: pointer;
+}
 
-        table input[type="text"]:focus{
-            outline: none;
-        }
+.calculadora{
+    font-size: 2rem;
+}
 
-        .tarefa{
-            text-align: left;
-        }
+.calculadora td, .calculadora th{
+    min-height: 5rem;
+    min-width: 4rem;
+    padding: 1rem 0.5rem;
+    cursor: pointer;
+}
 
-        #menu{
-            display: none;
-        }
+#calc{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 1rem;
+    background-color: purple;
+    padding: 0.4rem;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 1rem;
+}
 
-        #feedback{
-            position: fixed;
-            bottom: 0;
-            right: 0;
-            margin: 1rem;
-            background-color: purple;
-            padding: 0.5rem;
-            color: white;
-            cursor: pointer;
-        }
+#calculadora{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 3.5rem 1rem;
+    background-color: #fefefe;
+    padding: 0.2rem;
+}
 
-        #calc{
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            margin: 1rem;
-            background-color: purple;
-            padding: 0.4rem;
-            color: white;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 1rem;
-        }
-
-        #calculadora{
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            margin: 3.5rem 1rem;
-            background-color: #fefefe;
-            padding: 0.2rem;
-        }
-
-        #topo{
-            position: sticky;
-            top: 95vh;
-            margin: 1rem;
-            background-color: purple;
-            padding: 0.5rem;
-            color: white;
-        }
-
-        @media (max-width: 920px){
-            #menu{
-                display: block;
-            }
-
-            .mainMenu{
-                text-align: right;
-                display: block;
-                margin: 0;
-                padding: 0;
-                margin-top: -40px;
-                height: 40px;
-                overflow: hidden;
-            }
-
-            #menu:hover .mainMenu{
-                height: auto;
-            }
-
-            .mainItem{
-                display: block;
-                padding: 1rem;
-            }
-
-            .subMenu{
-                position: relative;
-                list-style: none;
-                display: none;
-                padding: 0;
-                background-color: rgb(72, 77, 75);
-            }
-
-        }
+#topo{
+    position: sticky;
+    top: 95vh;
+    margin: 1rem;
+    background-color: purple;
+    padding: 0.5rem;
+    color: white;
+} 
+*/
