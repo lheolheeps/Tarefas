@@ -112,7 +112,7 @@ h1 {
         display: none;
     }
     .link {
-        padding: 1rem;
+        padding: 1.3rem;
     }
     .grid {
         grid-template-columns: auto auto;
@@ -121,7 +121,7 @@ h1 {
         flex-direction: row;
     }
     .formulario input {
-        width: 80%;
+        width: 38%;
         margin-bottom: 0px;
     }
     .formulario button {
