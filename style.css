@@ -1,186 +1,146 @@
 body {
-    font-variant: small-caps !important;
+    font-variant: small-caps;
     margin: 0;
     padding: 0;
 }
 
 h1 {
     text-align: center;
-    font-size: 1.8em;
+    font-weight: bold;
 }
 
-.mainHeader {
-    background-color: rgb(72, 77, 75);
+.header {
+    height: 60px;
     width: 100%;
+    background-color: rgb(53, 59, 58);
     position: fixed;
     display: flex;
-    padding: 1rem;
+    flex-direction: row-reverse;
+    justify-content: space-between;
 }
 
 .logo {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
     width: 40px;
     height: 40px;
 }
 
-.logo img {
-    height: 40px;
-}
-
-.mainMenu {
-    list-style: none;
-}
-
-.mainItem {
-    display: inline-block;
-}
-
-.mainLink:hover {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.mainLink {
+.link {
     text-decoration: none;
-    color: #fefefe;
-    padding: 1rem;
+    color: white;
+    cursor: pointer;
 }
 
-#menu {
-    display: none;
+.item {
+    padding: 0.5rem;
 }
 
-.subMenu {
-    position: absolute;
+.menu {
     list-style: none;
-    display: none;
-    padding: 0;
-    background-color: rgb(72, 77, 75);
-}
-
-.subMenuItem {
-    margin: 20px 0;
-}
-
-.mainItem:hover .subMenu {
-    display: block;
-}
-
-@media (max-width: 920px) {
-    #menu {
-        display: block;
-    }
-    .mainMenu {
-        text-align: right;
-        display: block;
-        margin: 0;
-        padding: 0;
-        margin-top: -40px;
-        height: 40px;
-        overflow: hidden;
-    }
-    .mainItem {
-        display: block;
-        padding: 1rem;
-    }
-    .subMenu {
-        position: relative;
-        list-style: none;
-        display: none;
-        padding: 0;
-        background-color: rgb(72, 77, 75);
-    }
+    display: flex;
+    padding-inline-start: 0;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
 }
 
 .container {
-    margin: auto;
-    padding: 72px;
+    padding-top: 60px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
-.lista{
-    width: 100%;
+.conteudo{
+    margin-bottom: 1rem;
+}
+
+.formulario {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-table {
-    border-collapse: collapse;
-}
-
-td, th {
-    border: 1px solid;
-    padding: 0.5rem;
-    text-align: center;
-}
-
-table input[type="text"] {
+.formulario button {
     font-variant: small-caps;
-    border: none;
 }
 
-table input[type="text"]:focus {
-    outline: none;
+.formulario input{
+    font-variant: small-caps;
+    margin-bottom: 10px;
 }
 
-.tarefa {
-    text-align: left;
+.grid {
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: space-between;
 }
 
-/*
-.google {
-    margin: auto;
-    display: block;
-    max-width: 200px;
-}
-
-#feedback{
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    margin: 1rem;
-    background-color: purple;
-    padding: 0.5rem;
-    color: white;
+.card {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 10px 0px rgba(0, 0, 0, 0.16);
+    max-width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     cursor: pointer;
 }
 
-.calculadora{
-    font-size: 2rem;
-}
-
-.calculadora td, .calculadora th{
-    min-height: 5rem;
-    min-width: 4rem;
-    padding: 1rem 0.5rem;
+.cardCheckbox{
+    margin-right: 10px;
     cursor: pointer;
 }
 
-#calc{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    margin: 1rem;
-    background-color: purple;
-    padding: 0.4rem;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 1rem;
+.card h3{
+    margin-inline-start: 1em;
+    margin-inline-end: 1em;
 }
 
-#calculadora{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    margin: 3.5rem 1rem;
-    background-color: #fefefe;
-    padding: 0.2rem;
+@media (min-width: 600px) {
+    .header {
+        flex-direction: row;
+    }
+    .menu {
+        flex-direction: row;
+    }
+    #menu {
+        display: none;
+    }
+    .link {
+        padding: 1rem;
+    }
+    .grid {
+        grid-template-columns: auto auto;
+    }
+    .formulario {
+        flex-direction: row;
+    }
+    .formulario input {
+        width: 80%;
+        margin-bottom: 0px;
+    }
+    .formulario button {
+        width: 18%;
+    }
 }
 
-#topo{
-    position: sticky;
-    top: 95vh;
-    margin: 1rem;
-    background-color: purple;
-    padding: 0.5rem;
-    color: white;
-} 
-*/
+@media (min-width: 900px) {
+    .logo img {
+        margin-left: 50px;
+    }
+    .menu {
+        margin-right: 50px;
+    }
+    .grid {
+        grid-template-columns: auto auto auto auto;
+    }
+    .formulario {
+        max-width: 900px;
+        margin: auto;
+    }
+}
