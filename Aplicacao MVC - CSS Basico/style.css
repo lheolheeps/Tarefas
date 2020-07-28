@@ -9,85 +9,50 @@ h1 {
     font-size: 1.8em;
 }
 
-.mainHeader {
-    background-color: rgb(72, 77, 75);
+.header {
+    height: 60px;
     width: 100%;
+    background-color: rgb(53, 59, 58);
     position: fixed;
     display: flex;
-    padding: 1rem;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+td a {
+    margin-left: 2px;
+    margin-right: 2px;
+    color: black;
 }
 
 .logo {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
     width: 40px;
     height: 40px;
 }
 
-.logo img {
-    height: 40px;
-}
-
-.mainMenu {
-    list-style: none;
-}
-
-.mainItem {
-    display: inline-block;
-}
-
-.mainLink:hover {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.mainLink {
+.link {
     text-decoration: none;
-    color: #fefefe;
-    padding: 1rem;
+    color: white;
+    cursor: pointer;
 }
 
-#menu {
-    display: none;
+.item {
+    padding: 0.5rem;
 }
 
-.subMenu {
-    position: absolute;
+.menu {
     list-style: none;
-    display: none;
-    padding: 0;
-    background-color: rgb(72, 77, 75);
-}
-
-.subMenuItem {
-    margin: 20px 0;
-}
-
-.mainItem:hover .subMenu {
-    display: block;
-}
-
-@media (max-width: 920px) {
-    #menu {
-        display: block;
-    }
-    .mainMenu {
-        text-align: right;
-        display: block;
-        margin: 0;
-        padding: 0;
-        margin-top: -40px;
-        height: 40px;
-        overflow: hidden;
-    }
-    .mainItem {
-        display: block;
-        padding: 1rem;
-    }
-    .subMenu {
-        position: relative;
-        list-style: none;
-        display: none;
-        padding: 0;
-        background-color: rgb(72, 77, 75);
-    }
+    display: flex;
+    padding-inline-start: 0;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
 }
 
 .container {
@@ -124,24 +89,6 @@ table input[type="text"]:focus {
     text-align: left;
 }
 
-/*
-.google {
-    margin: auto;
-    display: block;
-    max-width: 200px;
-}
-
-#feedback{
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    margin: 1rem;
-    background-color: purple;
-    padding: 0.5rem;
-    color: white;
-    cursor: pointer;
-}
-
 .calculadora{
     font-size: 2rem;
 }
@@ -153,34 +100,48 @@ table input[type="text"]:focus {
     cursor: pointer;
 }
 
-#calc{
+.calculadora span{
     position: fixed;
     bottom: 0;
     left: 0;
     margin: 1rem;
     background-color: purple;
-    padding: 0.4rem;
+    padding: 1rem;
     color: white;
-    font-size: 1rem;
+    font-size: 1.5rem;
     cursor: pointer;
     border-radius: 1rem;
 }
 
-#calculadora{
+.calculadora table{
     position: fixed;
     bottom: 0;
     left: 0;
-    margin: 3.5rem 1rem;
+    margin: 5rem 1rem;
     background-color: #fefefe;
     padding: 0.2rem;
 }
 
-#topo{
-    position: sticky;
-    top: 95vh;
-    margin: 1rem;
-    background-color: purple;
-    padding: 0.5rem;
-    color: white;
-} 
-*/
+@media (min-width: 600px) {
+    .header {
+        flex-direction: row;
+    }
+    .menu {
+        flex-direction: row;
+    }
+    #menu {
+        display: none;
+    }
+    .link {
+        padding: 1.3rem;
+    }
+}
+
+@media (min-width: 900px) {
+    .logo img {
+        margin-left: 50px;
+    }
+    .menu {
+        margin-right: 50px;
+    }
+}

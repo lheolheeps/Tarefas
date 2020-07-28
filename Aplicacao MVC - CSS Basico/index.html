@@ -7,100 +7,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="public/img/keep.png" />
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/145b869c30.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <header class="mainHeader">
-        <span class="logo"><img src="public/img/keep.png" /></span>
-        <ul class="mainMenu">
-            <li class="mainItem" id="menu"><a id="linkmenu" class="mainLink" href="#">menu</a></li>
-            <li class="mainItem"><a class="mainLink" href="#">Tarefas</a></li>
-            <li class="mainItem"><a class="mainLink" href="#">Sobre</a></li>
-            <li class="mainItem">
-                <a class="mainLink" href="#">Ajuda</a>
-                <ul class="subMenu">
-                    <li class="subMenuItem">
-                        <a class="mainLink" href="#">Canais de Atendimento</a>
-                    </li>
-                    <li class="subMenuItem">
-                        <a class="mainLink" href="#">Tire suas Duvidas</a>
-                    </li>
-                </ul>
-            </li>
+    <header class="header">
+        <div class="logo">
+            <img src="public/img/keep.png" alt="Logo">
+        </div>
+        <ul class="menu">
+            <li class="item"><a class="link" id="menu"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="14"
+                        viewBox="0 0 12 14">
+                        <path fill="#ffffff" fill-rule="evenodd" d="M0 0h12v2H0V0zm0 6h10v2H0V6zm0 6h8v2H0v-2z"></path>
+                    </svg>&nbsp;menu</a></li>
+            <li class="item"><a class="link" href="#">Tarefas</a></li>
+            <li class="item"><a class="link" href="#">Compras</a></li>
+            <li class="item"><a class="link" href="#">Ajuda</a></li>
         </ul>
     </header>
     <main class="container">
         <h1>Lista de Tarefas</h1>
-        <section class="lista">
-            
+        <section class="lista"></section>
+        <section class="calculadora">
+            <table style="display: none;" id="calculadora" cellspacing="0">
+            <!-- <table id="calculadora" cellspacing="0"> -->
+                <thead>
+                    <tr>
+                        <th colspan="4"> Calculadora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="font-size: 1rem;">
+                        <td id="salvo" style="text-align: right; border-bottom: none; border-right: none;" colspan="3"></td>
+                        <td id="operacao" style="border-left: none; border-bottom: none;"></td>
+                    </tr>
+                    <tr>
+                        <td id="visor" style="text-align:right; border-top: none;" colspan="4">12312312</td>
+                    </tr>
+                    <tr>
+                        <td id="C">c</td>
+                        <td id="D">del</td>
+                        <td class="operacoes" id="/">/</td>
+                        <td class="operacoes" id="*">*</td>
+                    </tr>
+                    <tr>
+                        <td class="numeros" id="7">7</td>
+                        <td class="numeros" id="8">8</td>
+                        <td class="numeros" id="9">9</td>
+                        <td class="operacoes" id="-">-</td>
+                    </tr>
+                    <tr>
+                        <td class="numeros" id="4">4</td>
+                        <td class="numeros" id="5">5</td>
+                        <td class="numeros" id="6">6</td>
+                        <td class="operacoes" id="+">+</td>
+                    </tr>
+                    <tr>
+                        <td class="numeros" id="1">1</td>
+                        <td class="numeros" id="2">2</td>
+                        <td class="numeros" id="3">3</td>
+                        <td class="operacoes" style="padding: 0; vertical-align: top;" id="E" rowspan="2">enter</td>
+                    </tr>
+                    <tr>
+                        <td class="numeros" id="0" colspan="2">0</td>
+                        <td id=".">.</td>
+                    </tr>
+                </tbody>
+                <span id="exibeCalculadora" class="fas fa-calculator"></span>
+            </table>
         </section>
     </main>
+    <script src="helper/helper.js"></script>
     <script src="Tarefa.js"></script>
     <script src="TarefaController.js"></script>
+    <script src="TarefaView.js"></script>
+    <script src="CalculadoraView.js"></script>
     <script src="app.js"></script>
-    <script>
-        /*
-        let id = 4;
-        document.getElementById('adicionar').onclick = function () {
-            const tarefa = document.getElementById('novo').value;
-            const data = document.getElementById('data').value;
-            if (tarefa != "" && data != "") {
-                const tabela = document.getElementById('tarefas');
-                id++;
-                let tr = document.createElement('tr');
-                tr.id = "linha" + id;
-                let td = document.createElement('td');
-                td.innerText = id;
-                tr.append(td);
-                td = document.createElement('td');
-                td.innerText = tarefa;
-                tr.append(td);
-                td = document.createElement('td');
-                td.innerText = formataData(data);
-                tr.append(td);
-                td = document.createElement('td');
-                let input = document.createElement('input');
-                input.type = 'checkbox';
-                input.id = 'situacao' + id;
-                input.onclick = () => checkTarefa(id);
-                input.value = 'S';
-                td.append(input);
-                tr.append(td);
-                tabela.append(tr);
-                document.getElementById('novo').value = "";
-                document.getElementById('data').value = "";
-            }
-        }
-
-        function checkTarefa(id) {
-            let tr = document.getElementById("linha" + id);
-            const tabela = document.getElementById('tarefas');
-            const situacao = document.getElementById('situacao' + id).checked;
-            tabela.removeChild(tr);
-            if (situacao) {
-                tr.style.backgroundColor = "#ddd";
-                tabela.append(tr);
-            } else {
-                let primeiratr = document.getElementById('tarefas').rows[0];
-                tr.removeAttribute("style");
-                tabela.insertBefore(tr, primeiratr);
-            }
-        }
-
-        document.getElementById('linkmenu').onclick = function () {
-            let menu = document.getElementsByClassName('mainMenu')[0];
-            if (menu.style.height === "auto") {
-                menu.removeAttribute("style");
-            } else {
-                menu.style.height = "auto";
-            }
-        }
-
-        function formataData(data) {
-            let anomesdia = data.split("-");
-            return anomesdia[2] + '/' + anomesdia[1] + '/' + anomesdia[0];
-        }*/
-    </script>
 </body>
 
 </html>
