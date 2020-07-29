@@ -132,6 +132,7 @@ class CalculadoraView {
         }
     }
 
+    /* ---------------------------------------------------------------------------------------------------------------------- */
 
     testes(){
         this.testeImprimeResultado();
@@ -145,11 +146,11 @@ class CalculadoraView {
         this.visor.innerHTML = "1";
         this.salvo.innerHTML = "";
         this.imprimeResultado('+');
-        console.log(this.operacao.innerHTML == "+" && this.salvo.innerHTML == "1" ? "testeImprimeResultado sem salvo deu boa" : "testeImprimeResultado sem salvo deu ruim");
+        console.log(this.operacao.innerHTML == "+" && this.salvo.innerHTML == "1" ? "imprimeResultado sem salvo deu boa" : "imprimeResultado sem salvo deu ruim");
         this.visor.innerHTML = "1";
         this.salvo.innerHTML = "1";
         this.imprimeResultado('E');
-        console.log(this.visor.innerHTML == "2" ? "testeImprimeResultado com salvo deu boa" : "testeImprimeResultado com salvo deu ruim");
+        console.log(this.visor.innerHTML == "2" ? "imprimeResultado com salvo deu boa" : "imprimeResultado com salvo deu ruim");
     }
 
     testeCalcula(){
@@ -166,24 +167,24 @@ class CalculadoraView {
         if(9 !== this.calcula(3,'*',3)){
             flag = false;
         }
-        console.log(flag ? "testeCalcula deu boa" : "testeCalcula deu ruim");
+        console.log(flag ? "calcula deu boa" : "calcula deu ruim");
     }
 
     testeImprimeNumero(){
         this.visor.innerHTML = "1";
         this.imprimeNumero('45');
-        console.log(this.visor.innerHTML == "145" ? "testeImprimeNumero deu boa" : "testeImprimeNumero deu ruim");
+        console.log(this.visor.innerHTML == "145" ? "imprimeNumero deu boa" : "imprimeNumero deu ruim");
     }
 
     testeLimpar(){
         this.visor.innerHTML = "145"
         this.limpar();
-        console.log(this.visor.innerHTML == "0" ? "testeLimpar deu boa" : "testeLimpar deu ruim");
+        console.log(this.visor.innerHTML == "0" ? "limpar deu boa" : "limpar deu ruim");
     }
 
     testeDelete(){
         this.visor.innerHTML = "145";
         this.deleta();
-        console.log(this.visor.innerHTML == "14" ? "testeDelete deu boa" : "testeDelete deu ruim");
+        console.log(this.visor.innerHTML == "14" ? "delete deu boa" : "delete deu ruim");
     }
 }

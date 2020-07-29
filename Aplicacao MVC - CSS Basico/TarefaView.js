@@ -24,8 +24,23 @@ class TarefaView {
         for (let index = 0; index < situacoes.length; index++) {
             situacoes[index].addEventListener("click", () => this.checkTarefa(situacoes[index].id.split("-")[1]));
         }
-        let menu = document.getElementById('menu');
-        menu.addEventListener("click", () => this.menu());
+        let deletes = document.getElementsByClassName('excluir');
+        for (let index = 0; index < deletes.length; index++) {
+            deletes[index].addEventListener("click", () => this.deletar(deletes[index].id.split("-")[1]));
+        }
+        document.getElementById('menu').addEventListener("click", () => this.menu());
+    }
+
+    /**
+     * Adiciona uma nova tarefa na tabela
+     */
+    adicionar() {
+        const descricao = document.getElementById('novo');
+        const data = document.getElementById('data');
+        if (descricao.value != "" && data.value != "") {
+            this.tarefaController.adicionar(descricao.value, data.value);
+            this.incluirEventos();
+        }
     }
 
     /**
@@ -36,35 +51,17 @@ class TarefaView {
      */
     checkTarefa(id) {
         const situacao = document.getElementById('situacao-' + id).checked;
-        this.tarefaController.alterarSituacao(situacao);
+        this.tarefaController.alterarSituacao(id, situacao);
         this.incluirEventos();
-        // let tr = document.getElementById("linha-" + id);
-        // const tabela = document.getElementById('tarefas');
-        // const situacao = document.getElementById('situacao-' + id).checked;
-        // tabela.removeChild(tr);
-        // if (situacao) {
-        //     tr.style.backgroundColor = "#ddd";
-        //     tabela.append(tr);
-        // } else {
-        //     let primeiratr = document.getElementById('tarefas').rows[0];
-        //     tr.removeAttribute("style");
-        //     tabela.insertBefore(tr, primeiratr);
-        // }
     }
 
     /**
-     * Adiciona uma nova tarefa na tabela
+     * Exclui tarefa da tabela
      */
-    adicionar() {
-        const descricao = document.getElementById('novo');
-        const data = document.getElementById('data');
-        if (descricao.value != "" && data.value != "") {
-
-            this.tarefaController.adicionar(descricao.value, data.value);
+    deletar(id) {
+        if (confirm("Deseja Excluir esta tarefa?")) {
+            this.tarefaController.deletar(id);
             this.incluirEventos();
-
-            descricao.value = "";
-            data.value = "";
         }
     }
 

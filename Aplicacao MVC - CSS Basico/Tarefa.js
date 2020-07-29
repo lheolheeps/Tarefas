@@ -26,27 +26,25 @@ class Tarefa {
     }
 
     /**
-     * Obtem as tarefas salvas
+     * Obtem todas as tarefas salvas
      * 
      * @returns {Array} tarefas
      */
 
     listar() {
         let tarefas = [];
-        mockTarefas.sort(function (a, b) {
+        mockTarefas.forEach(element => {
+            let tarefa = new Tarefa(element.id, element.descricao, element.data, element.situacao)
+            tarefas.push(tarefa);
+        });
+        tarefas.sort(function (a, b) {
             if (a.situacao > b.situacao) {
                 return 1;
             }
             if (a.situacao < b.situacao) {
                 return -1;
             }
-            // a must be equal to b
             return 0;
-        });
-        console.log(mockTarefas);
-        mockTarefas.forEach(element => {
-            let tarefa = new Tarefa(element.id, element.descricao, element.data, element.situacao)
-            tarefas.push(tarefa);
         });
         return tarefas;
     }
@@ -56,10 +54,50 @@ class Tarefa {
      * 
      * @param {Tarefa} tarefa
      * 
-     * @returns {boolean}
+     * @returns {Number}
      */
     inserir(tarefa) {
         mockTarefas.push(tarefa);
+        window.localStorage.setItem('mock', JSON.stringify(mockTarefas));
+        return mockTarefas.length;
+    }
+
+    /**
+     * Obter tarefa da base
+     * 
+     * @param {Number} id
+     * 
+     * @returns {Tarefa} tarefa
+     */
+    obter(id) {
+        const tarefa = mockTarefas.find(element => element.id == id);
+        return tarefa;
+    }
+
+    /**
+     * Atualiza tarefa na base
+     * 
+     * @param {Tarefa} tarefa
+     * 
+     * @returns {Boolean}
+     */
+    atualizar(id, situacao){
+        let tarefa = this.obter(id);
+        tarefa.situacao = situacao;
+        window.localStorage.setItem('mock', JSON.stringify(mockTarefas));
         return true;
+    }
+
+    /**
+     * Excluir uma tarefa da base
+     * 
+     * @param {Number} id
+     * 
+     * @returns {Boolean}
+     */
+    excluir(id){
+        let tarefa = this.obter(id);
+        mockTarefas.splice(mockTarefas.indexOf(tarefa), 1);
+        window.localStorage.setItem('mock', JSON.stringify(mockTarefas));
     }
 }
