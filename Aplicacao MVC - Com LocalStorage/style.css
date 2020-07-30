@@ -1,0 +1,146 @@
+body {
+    font-variant: small-caps !important;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.8em;
+}
+
+.header {
+    height: 60px;
+    width: 100%;
+    background-color: rgb(53, 59, 58);
+    position: fixed;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+td a {
+    margin-left: 2px;
+    margin-right: 2px;
+    color: black;
+}
+
+.logo {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.item {
+    padding: 0.5rem;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    padding-inline-start: 0;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.container {
+    margin: auto;
+    padding: 72px;
+}
+
+.lista{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+table input[type="text"] {
+    font-variant: small-caps;
+    border: none;
+}
+
+table input[type="text"]:focus {
+    outline: none;
+}
+
+.tarefa {
+    text-align: left;
+}
+
+.calculadora{
+    font-size: 2rem;
+}
+
+.calculadora td, .calculadora th{
+    min-height: 5rem;
+    min-width: 4rem;
+    padding: 1rem 0.5rem;
+    cursor: pointer;
+}
+
+.calculadora span{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 1rem;
+    background-color: purple;
+    padding: 1rem;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+
+.calculadora table{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 5rem 1rem;
+    background-color: #fefefe;
+    padding: 0.2rem;
+}
+
+@media (min-width: 600px) {
+    .header {
+        flex-direction: row;
+    }
+    .menu {
+        flex-direction: row;
+    }
+    #menu {
+        display: none;
+    }
+    .link {
+        padding: 1.3rem;
+    }
+}
+
+@media (min-width: 900px) {
+    .logo img {
+        margin-left: 50px;
+    }
+    .menu {
+        margin-right: 50px;
+    }
+}

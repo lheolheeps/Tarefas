@@ -25,4 +25,13 @@
 //     },
 // ];
 
-var mockTarefas = JSON.parse(window.localStorage.getItem('mock'));
+// var mockTarefas = JSON.parse(window.localStorage.getItem('mock'));
+
+const objTarefaDAO = new TarefaDAO();
+const objTarefaController = new TarefaController();
+// objTarefaDAO.listar((lista) => objTarefaController.render(lista));
+objTarefaController.obterTarefas();
+const objCalculadoraView = new CalculadoraView();
+objCalculadoraView.incluirEventos();
+// objCalculadoraView.testes();
+// objTarefaController.testes();
