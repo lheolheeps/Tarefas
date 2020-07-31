@@ -3,7 +3,7 @@
  * 
  * Adiciona os metodos de interação dos botões
  * 
- * @version 1.0.0
+ * @version 1.5.0
  * @author Felipe Assunção <contato@felipeassuncao.com>
  * 
  */
@@ -88,12 +88,12 @@ class TarefaView {
         data.innerHTML = tarefa.data;
         tr.append(data);
         let acao = document.createElement('td');
-        // let checkbox = document.createElement('input');
-        // checkbox.type = "checkbox";
-        // checkbox.className = "check";
-        // checkbox.checked = tarefa.situacao ? true : false;
-        // checkbox.id = "situacao-" + tarefa.id;
-        // acao.append(checkbox);
+        let checkbox = document.createElement('input');
+        checkbox.type = "checkbox";
+        checkbox.className = "check";
+        checkbox.checked = tarefa.situacao ? true : false;
+        checkbox.id = "situacao-" + tarefa.id;
+        acao.append(checkbox);
         let icon = document.createElement('span');
         icon.className = 'fas fa-trash';
         let excluir = document.createElement('a');
@@ -144,14 +144,14 @@ class TarefaView {
      */
     incluirEventos(tarefaController) {
         let adicionar = document.getElementById('adicionar');
-        adicionar.addEventListener("click", () => tarefaController.adicionar());
+        adicionar.addEventListener("click", () => tarefaController.adicionar(this.getForm(), (e) => tarefaController.obterTarefas()));
         let situacoes = document.getElementsByClassName('check');
         for (let index = 0; index < situacoes.length; index++) {
-            situacoes[index].addEventListener("click", () => tarefaController.checkTarefa(situacoes[index].id.split("-")[1]));
+            situacoes[index].addEventListener("click", () => tarefaController.alterarSituacao(situacoes[index].id.split("-")[1], situacoes[index].checked, (e) => tarefaController.obterTarefas()));
         }
         let deletes = document.getElementsByClassName('excluir');
         for (let index = 0; index < deletes.length; index++) {
-            deletes[index].addEventListener("click", () => tarefaController.deletar(deletes[index].id.split("-")[1]));
+            deletes[index].addEventListener("click", () => tarefaController.deletar(deletes[index].id.split("-")[1], (e) => tarefaController.obterTarefas()));
         }
         document.getElementById('menu').addEventListener("click", () => this.menu());
     }
@@ -161,40 +161,6 @@ class TarefaView {
             "descricao": document.getElementById('novo').value,
             "data": document.getElementById('data').value
         };
-    }
-
-    /**
-     * Adiciona uma nova tarefa na tabela
-     */
-    adicionar() {
-        const descricao = document.getElementById('novo');
-        const data = document.getElementById('data');
-        if (descricao.value != "" && data.value != "") {
-            this.tarefaController.adicionar(descricao.value, data.value);
-            this.incluirEventos();
-        }
-    }
-
-    /**
-     * Muda a cor da tarefa checkada e move ela pro final da lista
-     * pra informar que a tarefa foi concluida
-     * 
-     * @param {Number} id 
-     */
-    checkTarefa(id) {
-        const situacao = document.getElementById('situacao-' + id).checked;
-        this.tarefaController.alterarSituacao(id, situacao);
-        this.incluirEventos();
-    }
-
-    /**
-     * Exclui tarefa da tabela
-     */
-    deletar(id) {
-        if (confirm("Deseja Excluir esta tarefa?")) {
-            this.tarefaController.deletar(id);
-            this.incluirEventos();
-        }
     }
 
     /**
@@ -208,5 +174,39 @@ class TarefaView {
             header.style.height = "auto";
         }
     }
+
+    // /**
+    //  * Adiciona uma nova tarefa na tabela
+    //  */
+    // adicionar() {
+    //     const descricao = document.getElementById('novo');
+    //     const data = document.getElementById('data');
+    //     if (descricao.value != "" && data.value != "") {
+    //         this.tarefaController.adicionar(descricao.value, data.value);
+    //         this.incluirEventos();
+    //     }
+    // }
+
+    // /**
+    //  * Muda a cor da tarefa checkada e move ela pro final da lista
+    //  * pra informar que a tarefa foi concluida
+    //  * 
+    //  * @param {Number} id 
+    //  */
+    // checkTarefa(id) {
+    //     const situacao = document.getElementById('situacao-' + id).checked;
+    //     this.tarefaController.alterarSituacao(id, situacao);
+    //     this.incluirEventos();
+    // }
+
+    // /**
+    //  * Exclui tarefa da tabela
+    //  */
+    // deletar(id) {
+    //     if (confirm("Deseja Excluir esta tarefa?")) {
+    //         this.tarefaController.deletar(id);
+    //         this.incluirEventos();
+    //     }
+    // }
 
 }

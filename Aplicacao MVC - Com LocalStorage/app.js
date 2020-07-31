@@ -26,6 +26,9 @@
 // ];
 
 var mockTarefas = JSON.parse(window.localStorage.getItem('mock'));
+if(mockTarefas == null){
+    mockTarefas = [];
+}
 
 const objTarefa = new Tarefa();
 const objTarefaController = new TarefaController();

@@ -1,7 +1,7 @@
 /** 
  * Controlador de Banco de Dados
  * 
- * @version 1.0.0
+ * @version 1.2.7
  * @author Felipe Assunção <contato@felipeassuncao.com>
  * 
  */
@@ -35,7 +35,7 @@ class TarefaDAO {
         };
 
         this.request.onsuccess = (event) => {
-            console.log("Banco de dados aberto com sucesso.");
+            // console.log("Banco de dados aberto com sucesso.");
             this.db = event.target.result;
             this.transaction = this.db.transaction(this.dbname, read);
             this.objectStore = this.transaction.objectStore(this.dbname);
@@ -47,24 +47,22 @@ class TarefaDAO {
     /**
      * Obtem todas as tarefas salvas
      * 
+     * @param {Function} callback 
+     * 
      * @returns {Array} lista
      */
     listar(callback) {
-        // TO-DO = rever lista no cursor
         this.conectar(() => {
             var lista = [];
-            // let request = this.objectStore.getAll();
-            // request.onsuccess = function () {
-            //     callback(request.result);
-            // }
             this.objectStore.openCursor().onsuccess = function (event) {
                 var cursor = event.target.result;
                 if (cursor) {
                     let tarefa = new Tarefa(cursor.key, cursor.value.descricao, cursor.value.data, cursor.value.situacao);
                     lista.push(tarefa);
                     cursor.continue();
+                } else {
+                    callback(lista);
                 }
-                callback(lista);
             };
         });
     }
@@ -73,12 +71,14 @@ class TarefaDAO {
      * Inserir tarefa na base
      * 
      * @param {Tarefa} tarefa
+     * @param {Function} callback 
      */
     inserir(tarefa, callback) {
         this.conectar(() => {
-            let result = this.objectStore.add(tarefa);
-            result.onsuccess = () => {
-                callback();
+            let request = this.objectStore.add(tarefa);
+            request.onsuccess = () => {
+                tarefa.id = request.result;
+                this.alterar(tarefa, callback);
             }
         }, "readwrite");
     }
@@ -87,12 +87,52 @@ class TarefaDAO {
      * Excluir uma tarefa da base
      * 
      * @param {Number} id
+     * @param {Function} callback 
      */
     excluir(id, callback) {
         this.conectar(() => {
-            let result = this.objectStore.delete(parseInt(id));
-            result.onsuccess = () => {
-                callback();
+            let request = this.objectStore.delete(parseInt(id));
+            request.onsuccess = () => {
+                if (callback != undefined) {
+                    callback();
+                }
+            }
+        }, "readwrite");
+
+    }
+
+    /**
+     * Obter uma tarefa da base
+     * 
+     * @param {Number} id
+     * @param {Function} callback 
+     */
+    obter(id, callback) {
+        this.conectar(() => {
+            let request = this.objectStore.get(parseInt(id));
+            request.onsuccess = () => {
+                let tarefa;
+                if (request.result != undefined) {
+                    tarefa = new Tarefa(request.result.id, request.result.descricao, request.result.data, request.result.situacao);
+                }
+                callback(tarefa);
+            }
+        });
+    }
+
+    /**
+     * Alterar uma tarefa da base
+     * 
+     * @param {Tarefa} tarefa
+     * @param {Function} callback 
+     */
+    alterar(tarefa, callback) {
+        this.conectar(() => {
+            let request = this.objectStore.put(tarefa, parseInt(tarefa.id));
+            request.onsuccess = (evento) => {
+                if (callback != undefined) {
+                    callback(evento);
+                }
             }
         }, "readwrite");
 
