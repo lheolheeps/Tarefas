@@ -1,8 +1,10 @@
 # Lista de Tarefas
 > Aplicação em andamento no curso de React Native (Serasa/Proway)
 
-## Técnologias Utilizadas (até o momento)
+## Técnologias e Padrões Utilizados (até o momento)
 
 - HTML
 - CSS
 - JS
+- IndexedDB
+- PWA
