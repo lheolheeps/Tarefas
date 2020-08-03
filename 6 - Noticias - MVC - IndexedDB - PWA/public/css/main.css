@@ -1,0 +1,147 @@
+body {
+    font-variant: small-caps !important;
+    margin: 0;
+    padding: 0;
+    background-color: lightgray;
+}
+
+.header {
+    height: 60px;
+    width: 100%;
+    background-color: rgb(53, 59, 58);
+    position: fixed;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.logo {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.item {
+    padding: 0.5rem;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    padding-inline-start: 0;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.container {
+    padding-top: 72px;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 50px;
+}
+
+.noticias {
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: space-around;
+}
+
+.noticia {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 30px 0px rgba(0, 0, 0, 0.16);
+    margin-bottom: 50px;
+    max-width: 300px;
+}
+
+.noticia img {
+    width: 100%;
+}
+
+.noticia hr{
+    margin: 0;
+}
+
+.corpo {
+    padding: 0 15px;
+}
+
+.corpo h3{
+    margin-top: 2px;
+    margin-bottom: 12px;
+}
+
+.corpo p{
+    margin-top: 2px;
+}
+
+.corpo span{
+    text-transform: uppercase;
+    font-size: 10px;
+}
+
+.acoes{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.acoes a{
+    text-decoration: none;
+    color: black;
+    padding: 12px;
+}
+
+.acoes a:hover{
+    color: rgba(0,0,0,0.8);
+}
+
+.acoes hr{
+    margin: 0;
+}
+
+@media (min-width: 600px) {
+    .header {
+        flex-direction: row;
+    }
+    .menu {
+        flex-direction: row;
+    }
+    #menu {
+        display: none;
+    }
+    .link {
+        padding: 1.3rem;
+    }
+    .noticias {
+        grid-template-columns: auto auto;
+    }
+}
+
+@media (min-width: 900px) {
+    .logo img {
+        margin-left: 50px;
+    }
+    .menu {
+        margin-right: 50px;
+    }
+    .noticias {
+        grid-template-columns: auto auto auto auto;
+    }
+    .noticia {
+        max-width: 240px;
+    }
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>Lista de Tarefas</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="public/img/keep.png" />
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="black" />
+    <link rel="apple-touch-icon" href="public/img/icons/hello-icon-152.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Lista de Tarefas">
+    <meta name="msapplication-TileImage" content="public/img/icons/hello-icon-144.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <script src="https://kit.fontawesome.com/145b869c30.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="public/img/keep.png" alt="Logo">
+        </div>
+        <ul class="menu">
+            <li class="item"><a class="link" id="menu"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="14"
+                        viewBox="0 0 12 14">
+                        <path fill="#ffffff" fill-rule="evenodd" d="M0 0h12v2H0V0zm0 6h10v2H0V6zm0 6h8v2H0v-2z"></path>
+                    </svg>&nbsp;menu</a></li>
+            <li class="item"><a class="link" href="#">Tarefas</a></li>
+            <li class="item"><a class="link" href="#">Compras</a></li>
+            <li class="item"><a class="link" href="#">Ajuda</a></li>
+        </ul>
+    </header>
+    <main class="container">
+        <h1>Lista de Tarefas</h1>
+        <section class="lista"></section>
+        <section class="calculadora">
+            <table style="display: none;" id="calculadora" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th colspan="4"> Calculadora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="font-size: 1rem;">
+                        <td id="salvo" style="text-align: right; border-bottom: none; border-right: none;" colspan="3"></td>
+                        <td id="operacao" style="border-left: none; border-bottom: none;"></td>
+                    </tr>
+                    <tr>
+                        <td id="visor" style="text-align:right; border-top: none;" colspan="4">12312312</td>
+                    </tr>
+                    <tr>
+                        <td id="C">c</td>
+                        <td id="D">del</td>
+                        <td class="operacoes" id="/">/</td>
+                        <td class="operacoes" id="*">*</td>
+                    </tr>
+                    <tr>
+                        <td class="numeros" id="7">7</td>
+                        <td class="numeros" id="8">8</td>
+                        <td class="numeros" id="9">9</td>
+                        <td class="operacoes" id="-">-</td>
+                    </tr>
+                    <tr>
+                        <td class="numeros" id="4">4</td>
+                        <td class="numeros" id="5">5</td>
+                        <td class="numeros" id="6">6</td>
+                        <td class="operacoes" id="+">+</td>
+                    </tr>
+                    <tr>
+                        <td class="numeros" id="1">1</td>
+                        <td class="numeros" id="2">2</td>
+                        <td class="numeros" id="3">3</td>
+                        <td class="operacoes" style="padding: 0; vertical-align: top;" id="E" rowspan="2">enter</td>
+                    </tr>
+                    <tr>
+                        <td class="numeros" id="0" colspan="2">0</td>
+                        <td id=".">.</td>
+                    </tr>
+                </tbody>
+                <span id="exibeCalculadora" class="fas fa-calculator"></span>
+            </table>
+        </section>
+    </main>
+    <script src="helper/helper.js"></script>
+    <script src="TarefaDAO.js"></script>
+    <script src="Tarefa.js"></script>
+    <script src="TarefaController.js"></script>
+    <script src="tests/TarefaControllerTest.js"></script>
+    <script src="TarefaView.js"></script>
+    <script src="tests/TarefaViewTest.js"></script>
+    <script src="CalculadoraView.js"></script>
+    <script src="tests/CalculadoraViewTest.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
