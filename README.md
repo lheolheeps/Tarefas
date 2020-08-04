@@ -8,3 +8,4 @@
 - JS
 - IndexedDB
 - PWA
+- Fetch
