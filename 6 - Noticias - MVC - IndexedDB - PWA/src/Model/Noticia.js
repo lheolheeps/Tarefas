@@ -18,9 +18,10 @@ class Noticia {
      * @param {String} urlImg 
      * @param {String} data 
      * @param {String} conteudo 
-     * @param {Number} id 
+     * @param {String} canal
+     * @param {Boolean} favorito
      */
-    constructor(autor, titulo, descricao, url, urlImg, data, conteudo, id) {
+    constructor(autor, titulo, descricao, url, urlImg, data, conteudo, canal, favorito) {
         this.autor = autor;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -28,6 +29,7 @@ class Noticia {
         this.urlImg = urlImg;
         this.data = data;
         this.conteudo = conteudo;
-        this.id = id;
+        this.canal = canal;
+        this.favorito = favorito;
     }
 }

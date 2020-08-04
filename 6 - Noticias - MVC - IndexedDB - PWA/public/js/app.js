@@ -13,7 +13,8 @@ class App {
     }
 
     run() {
-        this.noticiaController.obterNoticias();
+        let favoritos = (window.location.hash == "#favoritos");
+        this.noticiaController.render(favoritos);
     }
 
     testes() {
