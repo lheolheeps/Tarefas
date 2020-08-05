@@ -13,7 +13,7 @@ class NoticiaDAO {
     constructor() {
         new IndexedDB().conectar((conexao) => {
             this.conexao = conexao;
-            // this.obterNoticias();
+            this.obterNoticias();
         });
     }
 
@@ -21,20 +21,16 @@ class NoticiaDAO {
      * Obtem as noticias da api e salva no banco
      */
     async obterNoticias() {
-        let url = "https://newsapi.org/v2/top-headlines?pageSize=100&country=br&apiKey=c055c4ef28b941ff802f0d8e925ae920";
-        let request = new Request(url);
-        let response = await fetch(request);
-        if (response.status == 200) {
-            let responseJson = await response.json();
-            responseJson.articles.forEach(article => {
-                this.obter(article.url, (noticia) => {
-                    if (!noticia) {
-                        let noticia = new Noticia(article.author, article.title, article.description, article.url, article.urlToImage, article.publishedAt.substr(0, 10), article.content, article.source.name, false);
-                        this.inserir(noticia);
-                    }
-                });
+        // let json = await new NewsApiDAO().getEverything("covid");
+        let json = await new NewsApiDAO().getHeadlines();
+        json.articles.forEach(article => {
+            this.obter(article.url, (noticia) => {
+                if (!noticia) {
+                    let noticia = new Noticia(article.author, article.title, article.description, article.url, article.urlToImage, article.publishedAt.substr(0, 10), article.content, article.source.name, false);
+                    this.inserir(noticia);
+                }
             });
-        }
+        });
     }
 
     /**

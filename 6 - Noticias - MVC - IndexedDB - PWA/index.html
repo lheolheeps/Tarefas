@@ -43,9 +43,11 @@
     </header>
 
     <main class="container">
-        <h1 class="titulo">Noticias do Brasil</h1>
+        <h1 class="titulo">Noticias do Brasil <span id="favorito"><br />Favoritos</span></h1>
         <section class="noticias" id="noticias">
-            Nenhum Resultado Encontrado
+            <p class="padrao">
+                Nenhum Resultado Encontrado
+            </p>
             <!-- <div class="noticia">
                 <img src="https://s2.glbimg.com/hdIx1W_uJLbs4gw27KCwwtZZ7aQ=/1200x/smart/filters:cover():strip_icc()/s01.video.glbimg.com/x720/8746884.jpg"
                     alt="">
@@ -68,6 +70,7 @@
     <script src="src/helper/helper.js"></script>
     <script src="src/Model/Noticia.js"></script>
     <script src="src/DAO/core/IndexedDB.js"></script>
+    <script src="src/DAO/NewsApiDAO.js"></script>
     <script src="src/DAO/NoticiaDAO.js"></script>
     <script src="src/View/NoticiaView.js"></script>
     <script src="src/Controller/NoticiaController.js"></script>

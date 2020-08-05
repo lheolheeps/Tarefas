@@ -19,7 +19,8 @@ class NoticiaView {
      * 
      * @param {Array} noticias
      */
-    render(noticias) {
+    render(noticias, favoritos, controller) {
+        document.getElementById('favorito').style.display = favoritos ? 'block' : 'none';
         if (noticias.length > 0) {
             this.section.innerHTML = "";
             noticias.forEach(noticia => {
@@ -32,6 +33,7 @@ class NoticiaView {
                 card.append(this.criarAcoes(noticia));
                 this.section.append(card);
             }, this);
+            this.incluirEventos(controller);
         }
     }
 

@@ -1,10 +1,18 @@
 var cacheName = 'noticias';
 var filesToCache = [
-    '6 - Noticias - MVC - IndexedDB - PWA/',
-    '6 - Noticias - MVC - IndexedDB - PWA/index.html',
-    '6 - Noticias - MVC - IndexedDB - PWA/public/js/main.js',
-    '6 - Noticias - MVC - IndexedDB - PWA/public/css/main.css',
-    '6 - Noticias - MVC - IndexedDB - PWA/public/img/g1.png'
+    '/6 - Noticias - MVC - IndexedDB - PWA/',
+    '/6 - Noticias - MVC - IndexedDB - PWA/index.html',
+    '/6 - Noticias - MVC - IndexedDB - PWA/public/js/main.js',
+    '/6 - Noticias - MVC - IndexedDB - PWA/public/js/app.js',
+    '/6 - Noticias - MVC - IndexedDB - PWA/public/css/main.css',
+    '/6 - Noticias - MVC - IndexedDB - PWA/public/img/g1.png',
+    '/6 - Noticias - MVC - IndexedDB - PWA/src/Controller/NoticiaController.js',
+    '/6 - Noticias - MVC - IndexedDB - PWA/src/DAO/core/IndexedDB.js',
+    '/6 - Noticias - MVC - IndexedDB - PWA/src/DAO/NewsApiDAO.js',
+    '/6 - Noticias - MVC - IndexedDB - PWA/src/DAO/NoticiaDAO.js',
+    '/6 - Noticias - MVC - IndexedDB - PWA/src/helper/helper.js',
+    '/6 - Noticias - MVC - IndexedDB - PWA/src/Model/Noticia.js',
+    '/6 - Noticias - MVC - IndexedDB - PWA/src/View/NoticiaView.js'
 ];
 
 /* Start the service worker and cache all of the app's content */

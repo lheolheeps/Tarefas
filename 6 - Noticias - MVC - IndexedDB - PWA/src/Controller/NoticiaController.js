@@ -24,8 +24,7 @@ class NoticiaController {
                 }
                 return 0;
             });
-            this.noticiaView.render(noticias);
-            this.noticiaView.incluirEventos(this);
+            this.noticiaView.render(noticias, favoritos, this);
         }, favoritos);
     }
 

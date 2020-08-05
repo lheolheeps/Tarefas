@@ -54,10 +54,19 @@ body {
     margin-bottom: 50px;
 }
 
+#favorito{
+    font-size: 0.8em;
+    display: none;
+}
+
 .noticias {
     display: grid;
     grid-template-columns: auto;
     justify-content: space-around;
+}
+
+.padrao{
+    text-align: center;
 }
 
 .noticia {
