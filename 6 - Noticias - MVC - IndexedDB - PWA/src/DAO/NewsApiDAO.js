@@ -22,7 +22,10 @@ class NewsApiDAO {
      * @returns {Array} responseJson
      */
     async getHeadlines(dados = {}) {
-        dados.country = "br";
+        if (dados.country === undefined) {
+            dados.country = "br";
+        }
+
         let url = this.geraUrl("top-headlines", dados);
         let json = await this.callAPI(url);
         return json;
@@ -51,11 +54,11 @@ class NewsApiDAO {
      * 
      * @returns {String} url
      */
-    geraUrl(tipo, dados){
+    geraUrl(tipo, dados) {
         let url = this.baseUrl;
         url += tipo;
-        url += "?apiKey=" + this.apiKey + "&"; 
-        url += (dados != null) ? Helper.objectToString(dados,"&") : '';
+        url += "?apiKey=" + this.apiKey + "&";
+        url += (dados != null) ? Helper.objectToString(dados, "&") : '';
         return url;
     }
 

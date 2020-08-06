@@ -11,6 +11,9 @@ class NoticiaController {
     constructor() {
         this.noticiaDAO = new NoticiaDAO();
         this.noticiaView = new NoticiaView();
+        this.newsApiDAO = new NewsApiDAO();
+        this.popularSeletor();
+        this.escolherPais();
     }
 
     /**
@@ -21,7 +24,7 @@ class NoticiaController {
      */
     render(favoritos) {
         this.noticiaDAO.listar((noticias) => {
-            noticias.sort((a,b) => Helper.sortAscending(a,b,"data"));
+            noticias.sort((a, b) => Helper.sortAscending(a, b, "data"));
             this.noticiaView.render(noticias, favoritos, this);
         }, favoritos);
     }
@@ -31,10 +34,55 @@ class NoticiaController {
      * 
      * @param {String} url 
      */
-    alteraFavorito(url){
+    alteraFavorito(url) {
         this.noticiaDAO.obter(url, (noticia) => {
             noticia.favorito = (noticia.favorito) ? false : true;
             this.noticiaDAO.alterar(noticia);
         });
+    }
+
+    async renderPorPais(sigla) {
+        let dados = { country: sigla };
+        let lista = await this.newsApiDAO.getHeadlines(dados);
+
+        let section = document.querySelector('section');
+        console.log(section);
+    }
+
+    escolherPais() {
+        let selectPais = document.getElementById('selectorPais');
+        //let 
+        selectPais.addEventListener('change', (e) => {
+            let sigla = e.target.value;
+            this.renderPorPais(sigla);
+        })
+    }
+
+    popularSeletor() {
+        window.addEventListener('load', () => {
+            let paisSelector = document.getElementById('selectorPais');
+            if (window.location.hash === '#todos') {
+                let paises = [{
+                        nome: 'Estados Unidos',
+                        value: 'us'
+                    },
+                    {
+                        nome: 'Inglaterra',
+                        value: 'uk'
+                    }, {
+                        nome: 'Canadá',
+                        value: 'ca'
+                    }
+                ]
+                paises.forEach(pais => {
+
+                    let opcao = document.createElement('option');
+                    opcao.innerHTML = pais.nome;
+                    opcao.value = pais.value;
+
+                    paisSelector.append(opcao);
+                })
+            }
+        })
     }
 }

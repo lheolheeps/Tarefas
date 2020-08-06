@@ -20,7 +20,7 @@ class Helper {
         return dataHoraFormatada;
     }
 
-    static retiraLetrasDataHora(datahora){
+    static retiraLetrasDataHora(datahora) {
         let aux = datahora.substr(0, 19);
         let array = aux.split('T');
         let dataHoraFormatada = array.join('');
