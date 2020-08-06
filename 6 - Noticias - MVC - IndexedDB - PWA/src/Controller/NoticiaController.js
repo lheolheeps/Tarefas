@@ -43,10 +43,16 @@ class NoticiaController {
 
     async renderPorPais(sigla) {
         let dados = { country: sigla };
-        let lista = await this.newsApiDAO.getHeadlines(dados);
 
         let section = document.querySelector('section');
-        console.log(section);
+        while (section.firstChild) {
+            section.removeChild(section.firstChild);
+        }
+
+        let lista = await this.newsApiDAO.getHeadlines(dados);
+        let noticias = lista.articles;
+        //lista.sort((a, b) => Helper.sortAscending(a, b, "data"));
+        this.noticiaView.render(noticias, false, this);
     }
 
     escolherPais() {
