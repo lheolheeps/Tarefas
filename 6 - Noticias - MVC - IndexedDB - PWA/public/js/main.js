@@ -28,3 +28,5 @@ for (let index = 0; index < menus.length; index++) {
         }, 100);
     });
 }
+
+// app.testes();

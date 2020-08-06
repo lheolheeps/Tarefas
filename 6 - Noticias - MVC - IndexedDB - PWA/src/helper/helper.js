@@ -7,18 +7,73 @@
  */
 
 class Helper {
-    
+
     /**
-     * Converte uma data ANO-MES-DIA para DIA/MES/ANO
+     * Converte uma data&hora ANO-MES-DIAHORA:MIN:SEG para DIA/MES/ANO HORA:MIN:SEG
      * 
-     * @param {String} data
+     * @param {String} datahora
      * 
-     * @returns {String} dataFormatada
+     * @returns {String} dataHoraFormatada
      */
-    static formataDataTela(data) {
-        let anomesdia = data.substr(0,10).split("-");
-        let dataFormatada = anomesdia[2] + '/' + anomesdia[1] + '/' + anomesdia[0];
-        return dataFormatada;
+    static formataDataHoraTela(datahora) {
+        let dataHoraFormatada = datahora.substr(8, 2) + '/' + datahora.substr(5, 2) + '/' + datahora.substr(0, 4) + " " + datahora.substr(10, 8);
+        return dataHoraFormatada;
+    }
+
+    static retiraLetrasDataHora(datahora){
+        let aux = datahora.substr(0, 19);
+        let array = aux.split('T');
+        let dataHoraFormatada = array.join('');
+        return dataHoraFormatada;
+    }
+
+    /**
+     * Transforma um objeto associativo numa string 
+     * junto ao separador indicado
+     * 
+     * @param {Object} objeto 
+     * @param {String} separador 
+     * 
+     * @returns {String} string
+     */
+    static objectToString(objeto, separador) {
+        let array = [];
+        for (let prop in objeto) {
+            let str = prop + "=" + objeto[prop];
+            array.push(str);
+        }
+        let string = array.join(separador);
+        return string;
+    }
+
+    /**
+     * @param {Object} a 
+     * @param {Object} b 
+     * @param {String} parameter 
+     */
+    static sortAscending(a, b, parameter) {
+        if (b[parameter] > a[parameter]) {
+            return 1;
+        }
+        if (b[parameter] < a[parameter]) {
+            return -1;
+        }
+        return 0;
+    }
+
+    /**
+     * @param {Object} a 
+     * @param {Object} b 
+     * @param {String} parameter 
+     */
+    static sortDescending(a, b, parameter) {
+        if (a[parameter] > b[parameter]) {
+            return 1;
+        }
+        if (a[parameter] < b[parameter]) {
+            return -1;
+        }
+        return 0;
     }
 
 }

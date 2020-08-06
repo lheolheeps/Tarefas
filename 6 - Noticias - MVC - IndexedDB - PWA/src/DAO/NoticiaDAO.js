@@ -10,7 +10,7 @@ class NoticiaDAO {
 
     conexao;
 
-    constructor() {
+    constructor(test = false) {
         new IndexedDB().conectar((conexao) => {
             this.conexao = conexao;
             this.obterNoticias();
@@ -18,15 +18,15 @@ class NoticiaDAO {
     }
 
     /**
-     * Obtem as noticias da api e salva no banco
+     * Obtem as noticias da api e salva na base
      */
     async obterNoticias() {
-        // let json = await new NewsApiDAO().getEverything("covid");
-        let json = await new NewsApiDAO().getHeadlines();
+        // let json = await new NewsApiDAO().getEverything({q: "covid"});
+        let json = await new NewsApiDAO().getHeadlines({ pageSize: "100" });
         json.articles.forEach(article => {
             this.obter(article.url, (noticia) => {
                 if (!noticia) {
-                    let noticia = new Noticia(article.author, article.title, article.description, article.url, article.urlToImage, article.publishedAt.substr(0, 10), article.content, article.source.name, false);
+                    let noticia = new Noticia(article.author, article.title, article.description, article.url, article.urlToImage, Helper.retiraLetrasDataHora(article.publishedAt), article.content, article.source.name, false);
                     this.inserir(noticia);
                 }
             });
@@ -75,20 +75,22 @@ class NoticiaDAO {
     /**
      * Obter uma noticia da base
      * 
-     * @param {String} url
+     * @param {String} url chave do registro
      * @param {Function} callback 
      */
     obter(url, callback) {
-        let transaction = this.conexao.transaction("noticia", "readwrite");
-        let objectStore = transaction.objectStore("noticia");
-        let request = objectStore.get(url);
-        request.onsuccess = () => {
-            let noticia = false;
-            if (request.result != undefined) {
-                noticia = new Noticia(request.result.autor, request.result.titulo, request.result.descricao, request.result.url, request.result.urlImg, request.result.data, request.result.conteudo, request.result.canal, request.result.favorito);
+        new IndexedDB().conectar((conexao) => {
+            let transaction = conexao.transaction("noticia", "readwrite");
+            let objectStore = transaction.objectStore("noticia");
+            let request = objectStore.get(url);
+            request.onsuccess = () => {
+                let noticia = false;
+                if (request.result != undefined) {
+                    noticia = new Noticia(request.result.autor, request.result.titulo, request.result.descricao, request.result.url, request.result.urlImg, request.result.data, request.result.conteudo, request.result.canal, request.result.favorito);
+                }
+                callback(noticia);
             }
-            callback(noticia);
-        }
+        });
     }
 
     /**

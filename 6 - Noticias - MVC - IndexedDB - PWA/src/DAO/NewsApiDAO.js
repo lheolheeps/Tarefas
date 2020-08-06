@@ -9,37 +9,64 @@
  */
 
 class NewsApiDAO {
+
     baseUrl = "https://newsapi.org/v2/";
-    apiKey = "&apiKey=c055c4ef28b941ff802f0d8e925ae920";
+    apiKey = "c055c4ef28b941ff802f0d8e925ae920";
 
     /**
      * Obtem as noticias mais quentes do brasil
      * 
      * @see https://newsapi.org/docs/endpoints/top-headlines
+     * @param {Object} dados
      * 
      * @returns {Array} responseJson
      */
-    async getHeadlines() {
-        let url = this.baseUrl + "top-headlines?pageSize=100&country=br" + this.apiKey;
-        let request = new Request(url);
-        let response = await fetch(request);
-        let responseJson = [];
-        if (response.status == 200) {
-            responseJson = await response.json();
-        }
-        return responseJson;
+    async getHeadlines(dados = {}) {
+        dados.country = "br";
+        let url = this.geraUrl("top-headlines", dados);
+        let json = await this.callAPI(url);
+        return json;
     }
 
     /**
      * Obtem as noticias com base num assunto
      * 
      * @see https://newsapi.org/docs/endpoints/everything
-     * @param {String} query
+     * @param {Object} dados
      * 
-     * @returns {Array} responseJson
+     * @returns {Array} json
      */
-    async getEverything(query) {
-        let url = this.baseUrl + "everything?excludeDomains=editalconcursosbrasil.com.br&language=pt&q=" + query + this.apiKey;
+    async getEverything(dados = {}) {
+        dados.language = "pt";
+        let url = this.geraUrl("everything", dados);
+        let json = await this.callAPI(url);
+        return json;
+    }
+
+    /**
+     * Gera a url da chamada
+     * 
+     * @param {String} tipo 
+     * @param {Object} dados 
+     * 
+     * @returns {String} url
+     */
+    geraUrl(tipo, dados){
+        let url = this.baseUrl;
+        url += tipo;
+        url += "?apiKey=" + this.apiKey + "&"; 
+        url += (dados != null) ? Helper.objectToString(dados,"&") : '';
+        return url;
+    }
+
+    /**
+     * Realiza a chamada a API
+     * 
+     * @param {String} url 
+     * 
+     * @returns {JSON} responseJson
+     */
+    async callAPI(url) {
         let request = new Request(url);
         let response = await fetch(request);
         let responseJson = [];

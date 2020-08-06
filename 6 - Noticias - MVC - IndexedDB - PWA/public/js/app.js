@@ -18,7 +18,9 @@ class App {
     }
 
     testes() {
-        this.noticiaViewTest.run();
-        this.noticiaControllerTest.run();
+        new helperTest().run();
+        new NewsApiDAOTest().run();
+        new NoticiaDAOTest().run();
+        new NoticiaViewTest().run();
     }
 }

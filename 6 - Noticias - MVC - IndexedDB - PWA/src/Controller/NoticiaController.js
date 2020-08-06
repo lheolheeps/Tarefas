@@ -13,21 +13,24 @@ class NoticiaController {
         this.noticiaView = new NoticiaView();
     }
 
+    /**
+     * Renderiza a pagina de nocitias 
+     * Pode trazer todas ou apenas as favoritas
+     * 
+     * @param {Boolean} favoritos 
+     */
     render(favoritos) {
         this.noticiaDAO.listar((noticias) => {
-            noticias.sort(function (a, b) {
-                if (a.data > b.data) {
-                    return 1;
-                }
-                if (a.data < b.data) {
-                    return -1;
-                }
-                return 0;
-            });
+            noticias.sort((a,b) => Helper.sortAscending(a,b,"data"));
             this.noticiaView.render(noticias, favoritos, this);
         }, favoritos);
     }
 
+    /**
+     * Altera o estado de favorito da noticia
+     * 
+     * @param {String} url 
+     */
     alteraFavorito(url){
         this.noticiaDAO.obter(url, (noticia) => {
             noticia.favorito = (noticia.favorito) ? false : true;

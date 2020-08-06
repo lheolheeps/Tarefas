@@ -24,7 +24,7 @@ class NoticiaView {
         if (noticias.length > 0) {
             this.section.innerHTML = "";
             noticias.forEach(noticia => {
-                noticia.data = Helper.formataDataTela(noticia.data);
+                noticia.data = Helper.formataDataHoraTela(noticia.data);
                 let card = document.createElement('div');
                 card.className = "noticia";
                 card.append(this.criarImagem(noticia.urlImg));
@@ -47,6 +47,7 @@ class NoticiaView {
     criarImagem(url) {
         let img = document.createElement('img');
         img.src = (url != null) ? url : "public/img/blank.png";
+        img.onerror = () => { img.src = "public/img/blank.png"; };
         return img;
     }
 
