@@ -40,6 +40,9 @@ class NewsApiDAO {
      * @returns {Array} json
      */
     async getEverything(dados = {}) {
+        if (!dados.q) {
+            dados.q = 'a';
+        }
         dados.language = "pt";
         let url = this.geraUrl("everything", dados);
         let json = await this.callAPI(url);

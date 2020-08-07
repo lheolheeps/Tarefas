@@ -20,7 +20,6 @@ class NoticiaView {
      * @param {Array} noticias
      */
     render(noticias, favoritos, controller) {
-        debugger;
         document.getElementById('favorito').style.display = favoritos ? 'block' : 'none';
         if (noticias.length > 0) {
             this.section.innerHTML = "";
