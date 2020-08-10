@@ -63,9 +63,9 @@ class NoticiaController {
         let dados = { country: sigla };
         let section = document.querySelector('section');
 
-        while (section.firstChild) {
-            section.removeChild(section.firstChild);
-        }
+        // while (section.firstChild) {
+        //     section.removeChild(section.firstChild);
+        // }
 
         let listaNoticias = [];
         let lista = await this.newsApiDAO.getHeadlines(dados);
@@ -91,9 +91,9 @@ class NoticiaController {
 
         let section = document.querySelector('section');
 
-        while (section.firstChild) {
-            section.removeChild(section.firstChild);
-        }
+        // while (section.firstChild) {
+        //     section.removeChild(section.firstChild);
+        // }
 
         let json = await this.newsApiDAO.getEverything({ q: query });
         let lista = json.articles
@@ -153,7 +153,6 @@ class NoticiaController {
 
             input.addEventListener('keyup', function(e) {
                 if (e.keyCode === 13) {
-                    console.log('mandou a query');
                     renderPorQuery(input.value);
                 }
             });

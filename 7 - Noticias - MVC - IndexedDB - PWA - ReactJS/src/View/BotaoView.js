@@ -20,16 +20,18 @@ class BotaoView {
      */
     criarA(texto, link, target, id, icone, cor, classe) {
         let botao = document.createElement('a');
-        if (link != null) botao.href = link;
-        if (target != null) botao.target = target;
-        if (id != null) botao.id = id;
-        if (classe != null) botao.className = classe;
+        if (link != null)
+            botao.href = link;
+        if (target != null)
+            botao.target = target;
+        if (id != null)
+            botao.id = id;
+        if (classe != null)
+            botao.className = classe;
         if (icone != null) {
             let span = this.criarIcone(icone, cor);
-            span.style.marginRight = "3px";
             botao.append(span);
         }
-        texto = texto;
         botao.append(texto);
         return botao;
     }
@@ -42,16 +44,35 @@ class BotaoView {
     criarIcone(icone, cor) {
         let icon = document.createElement('span');
         icon.className = icone;
-        if (cor != null) icon.style.color = cor;
+        icon.style.marginRight = "3px";
+        if (cor != null)
+            icon.style.color = cor;
         return icon;
     }
 
-    // favorito.className = "favorito";
-    // favorito.id = noticia.url;
-    // favorito.innerHTML = (noticia.favorito) ? "Desfavoritar&nbsp" : "Favoritar&nbsp";
-    // let iconFavorito = document.createElement('span');
-    // iconFavorito.className = "fas fa-heart";
-    // iconFavorito.style.color = (noticia.favorito) ? "red" : "";
-    // favorito.append(iconFavorito);
-    // acoes.append(favorito);
+    criarAReact(texto, link, target, id, icone, cor, classe, click) {
+        let props = {};
+        props.key = Math.random().toString(36).substring(7);
+        if (link != null)
+            props.href = link;
+        if (target != null)
+            props.target = target;
+        if (id != null)
+            props.id = id;
+        if (classe != null)
+            props.className = classe;
+        if (click != null)
+            props.onClick = click;
+        let span = this.criarIconeReact(icone, cor);
+        return React.createElement('a', props, [span, texto]);
+    }
+
+    criarIconeReact(classe, cor) {
+        let props = {};
+        props.key = Math.random().toString(36).substring(7);
+        props.className = classe;
+        props.style = { marginRight: "3px", color: cor };
+        // if (cor != null) props.style.color = cor;
+        return React.createElement('span', props, "");
+    }
 }
