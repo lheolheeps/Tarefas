@@ -55,7 +55,7 @@ class NoticiaDAO {
             let transaction = conexao.transaction("noticia", "readonly");
             let objectStore = transaction.objectStore("noticia");
             var lista = [];
-            objectStore.openCursor().onsuccess = function (event) {
+            objectStore.openCursor().onsuccess = function(event) {
                 var cursor = event.target.result;
                 if (cursor) {
                     if (favoritos && !cursor.value.favorito) {

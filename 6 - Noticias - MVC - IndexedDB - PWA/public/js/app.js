@@ -22,5 +22,6 @@ class App {
         new NewsApiDAOTest().run();
         new NoticiaDAOTest().run();
         new NoticiaViewTest().run();
+        new QueryViewTest().run();
     }
 }

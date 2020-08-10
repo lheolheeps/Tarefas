@@ -54,7 +54,7 @@ body {
     margin-bottom: 50px;
 }
 
-#favorito{
+#favorito {
     font-size: 0.8em;
     display: none;
 }
@@ -65,7 +65,7 @@ body {
     justify-content: space-around;
 }
 
-.padrao{
+.padrao {
     text-align: center;
 }
 
@@ -125,6 +125,30 @@ body {
 
 .acoes hr {
     margin: 0;
+}
+
+#labelInputQuery {
+    margin-right: 5px;
+    color: white;
+}
+
+#inputQuery {
+    border-radius: 10px;
+    border-style: none;
+    height: 18px;
+    text-align: center;
+    width: 125px;
+}
+
+#paisSelector {
+    width: 150px;
+    border-radius: 4px;
+    height: 18px;
+}
+
+#inputQuery:focus {
+    border-style: none;
+    outline: none;
 }
 
 @media (min-width: 600px) {
