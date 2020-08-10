@@ -140,7 +140,7 @@ class NoticiaController {
         let inputItem = document.getElementById('escolherOpcao');
         inputItem.innerHTML = "";
 
-        if (window.location.hash === '#todos') {
+        if (window.location.hash === '#todos' || window.location.hash === '') {
             let pageTitle = document.querySelector('.titulo');
             pageTitle.innerHTML = 'Noticias do Brasil' + '<span id="favorito"><br />Favoritos</span></h1>';
 

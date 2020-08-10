@@ -47,7 +47,7 @@ class NoticiaView {
     criarImagem(url) {
         let img = document.createElement('img');
         img.src = (url != null) ? url : "public/img/blank.png";
-        img.onerror = () => { img.src = "public/img/blank.png"; };
+        img.onerror = () => { img.onerror = false; img.src = "public/img/blank.png"; };
         return img;
     }
 
@@ -91,23 +91,13 @@ class NoticiaView {
     criarAcoes(noticia) {
         let acoes = document.createElement('div');
         acoes.className = "acoes";
-        let verMais = document.createElement('a');
-        verMais.href = noticia.url;
-        verMais.target = "_blank";
-        let iconVerMais = document.createElement('span');
-        iconVerMais.className = "fas fa-plus-square";
-        verMais.append(iconVerMais);
-        verMais.append(" Ver Mais");
+        let botaoView = new BotaoView();
+        let verMais = botaoView.criarA("Ver Mais", noticia.url, "_blank", null, "fas fa-plus-square");
         acoes.append(verMais);
         acoes.append(document.createElement('hr'));
-        let favorito = document.createElement('a');
-        favorito.className = "favorito";
-        favorito.id = noticia.url;
-        favorito.innerHTML = (noticia.favorito) ? "Desfavoritar&nbsp" : "Favoritar&nbsp";
-        let iconFavorito = document.createElement('span');
-        iconFavorito.className = "fas fa-heart";
-        iconFavorito.style.color = (noticia.favorito) ? "red" : "";
-        favorito.append(iconFavorito);
+        let textoFavorito = (noticia.favorito) ? "Desfavoritar" : "Favoritar";
+        let corFavorito = (noticia.favorito) ? "red" : "";
+        let favorito = botaoView.criarA(textoFavorito, null, null, noticia.url, "fas fa-heart", corFavorito, "favorito");
         acoes.append(favorito);
         return acoes;
     }
@@ -143,8 +133,9 @@ class NoticiaView {
             }
         } else {
             iconFavorito.style.color = favorito ? "red" : "";
-            favoritar.innerHTML = favorito ? "Desfavoritar" : "Favoritar";
+            favoritar.textContent = "";
             favoritar.append(iconFavorito);
+            favoritar.append(favorito ? "Desfavoritar" : "Favoritar");
         }
     }
 
