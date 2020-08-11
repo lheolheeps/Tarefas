@@ -30,13 +30,13 @@ class NoticiaView {
                 // card.className = "noticia";
                 let img = this.criarImagem(noticia.urlImg);
                 let corpo = this.criarCorpo(noticia);
-                let hr = React.createElement('hr', {key: Math.random().toString(36).substring(7)});
+                let hr = React.createElement('hr', { key: Math.random().toString(36).substring(7) });
                 let acoes = this.criarAcoes(noticia);
                 // card.append(this.criarImagem(noticia.urlImg));
                 // card.append(this.criarCorpo(noticia));
                 // card.append(document.createElement('hr'));
                 // card.append(this.criarAcoes(noticia));
-                let card = React.createElement('div', {key: Math.random().toString(36).substring(7), className: "noticia"}, [img, corpo, hr, acoes]);
+                let card = React.createElement('div', { key: Math.random().toString(36).substring(7), className: "noticia" }, [img, corpo, hr, acoes]);
                 cards.push(card);
                 // this.section.append(card);
             }, this);
@@ -80,8 +80,8 @@ class NoticiaView {
         // data.innerHTML = "Publicado em " + noticia.data;
         // corpo.append(data);
         // corpo.append(document.createElement('br'));
-        let br = React.createElement('br', {key: Math.random().toString(36).substring(7)});
-        let autor = this.criarAutor((noticia.autor) ? noticia.autor + " - " + noticia.canal : noticia.canal );
+        let br = React.createElement('br', { key: Math.random().toString(36).substring(7) });
+        let autor = this.criarAutor((noticia.autor) ? noticia.autor + " - " + noticia.canal : noticia.canal);
         // let autor = document.createElement('span');
         // if (noticia.autor != null) {
         //     autor.innerHTML = noticia.autor + " - " + noticia.canal;
@@ -97,25 +97,41 @@ class NoticiaView {
         // let descricao = document.createElement('p');
         // descricao.innerHTML = noticia.descricao;
         // corpo.append(descricao);
-        return React.createElement('div',{ key: Math.random().toString(36).substring(7), className : "corpo"}, [data, br, autor, titulo, descricao])
+        return React.createElement('div', { key: Math.random().toString(36).substring(7), className: "corpo" }, [data, br, autor, titulo, descricao])
         // ReactDOM.render([data, br, autor, titulo, descricao], corpo);
         // return corpo;
     }
 
+    /**
+     * 
+     * @param {String} data 
+     */
     criarData(data) {
-        return React.createElement('span', {key: Math.random().toString(36).substring(7)}, "Publicado em " + data);
+        return React.createElement('span', { key: Math.random().toString(36).substring(7) }, "Publicado em " + data);
     }
-
+    
+    /**
+     * 
+     * @param {String} autor 
+     */
     criarAutor(autor) {
-        return React.createElement('span', {key: Math.random().toString(36).substring(7)}, autor);
+        return React.createElement('span', { key: Math.random().toString(36).substring(7) }, autor);
     }
 
-    criarTitulo(titulo){
-        return React.createElement('h3', {key: Math.random().toString(36).substring(7)}, titulo);
+    /**
+     * 
+     * @param {String} titulo 
+     */
+    criarTitulo(titulo) {
+        return React.createElement('h3', { key: Math.random().toString(36).substring(7) }, titulo);
     }
 
-    criarDescricao(descricao){
-        return React.createElement('p', {key: Math.random().toString(36).substring(7)}, descricao);
+    /**
+     * 
+     * @param {String} descricao 
+     */
+    criarDescricao(descricao) {
+        return React.createElement('p', { key: Math.random().toString(36).substring(7) }, descricao);
     }
 
     /**
@@ -130,11 +146,11 @@ class NoticiaView {
         // acoes.className = "acoes";
         let botaoView = new BotaoView();
         let verMais = botaoView.criarAReact("Ver Mais", noticia.url, "_blank", null, "fas fa-plus-square");
-        let hr = React.createElement('hr',{key: Math.random().toString(36).substring(7)});
+        let hr = React.createElement('hr', { key: Math.random().toString(36).substring(7) });
         let textoFavorito = (noticia.favorito) ? "Desfavoritar" : "Favoritar";
         let corFavorito = (noticia.favorito) ? "red" : "";
         let favorito = botaoView.criarAReact(textoFavorito, null, null, noticia.url, "fas fa-heart", corFavorito, "favorito");
-        return React.createElement('div', {key: Math.random().toString(36).substring(7), className : "acoes"}, [verMais, hr, favorito])
+        return React.createElement('div', { key: Math.random().toString(36).substring(7), className: "acoes" }, [verMais, hr, favorito])
         // ReactDOM.render([verMais, hr, favorito], acoes);
         // return acoes;
     }

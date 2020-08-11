@@ -50,6 +50,17 @@ class BotaoView {
         return icon;
     }
 
+    /**
+     * Cria os botões utilizando ReactJS
+     * 
+     * @param {String} texto 
+     * @param {String} link 
+     * @param {String} target 
+     * @param {String} id 
+     * @param {String} icone 
+     * @param {String} cor 
+     * @param {String} classe 
+     */
     criarAReact(texto, link, target, id, icone, cor, classe, click) {
         let props = {};
         props.key = Math.random().toString(36).substring(7);
@@ -67,6 +78,13 @@ class BotaoView {
         return React.createElement('a', props, [span, texto]);
     }
 
+
+    /**
+     * Cria os icones utilizando ReactJS
+     * 
+     * @param {String} icone 
+     * @param {String} cor 
+     */
     criarIconeReact(classe, cor) {
         let props = {};
         props.key = Math.random().toString(36).substring(7);
