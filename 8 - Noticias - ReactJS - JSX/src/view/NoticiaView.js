@@ -28,7 +28,7 @@ class NoticiaView {
         ReactDOM.render(
             <React.StrictMode>
                 <Header controller={this.controller}/>
-                <Container noticias={noticias} controller={this.controller}/>
+                <Container favoritos={favoritos} noticias={noticias} controller={this.controller}/>
             </React.StrictMode>,
             document.getElementById('body')
         );
