@@ -1,17 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import Header from './Header';
-import Container from './Container';
 import * as serviceWorker from './serviceWorker';
+// import Header from './view/components/Header';
+// import Container from './view/components/Container';
+import NoticiaController from './controller/NoticiaController'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Header />
-    <Container />
-  </React.StrictMode>,
-  document.getElementById('body')
-);
+
+let noticiaController = new NoticiaController();
+noticiaController.render();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

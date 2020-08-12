@@ -109,7 +109,7 @@ body {
   justify-content: space-evenly;
 }
 
-.acoes a {
+.acoes a, .acoes span {
   text-decoration: none;
   color: rgb(0, 0, 0);
   padding: 12px;
