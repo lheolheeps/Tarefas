@@ -9,3 +9,5 @@
 - IndexedDB
 - PWA
 - Fetch
+- ReactJS
+- JSX
