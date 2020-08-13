@@ -28,20 +28,19 @@ class Acoes extends React.Component {
             <div className="acoes" >
                 <a href={this.props.noticia.url} target="_blank" rel="noopener noreferrer">
                     <FontAwesomeIcon icon={faPlusSquare} />
-                &nbsp;Ver Mais
-            </a>
+                    &nbsp;Ver Mais
+                </a>
                 <hr />
                 <span id={this.props.noticia.url} className="favorito"
                     onClick={() => {
                         this.props.controller.alteraFavorito(this.props.noticia);
                         this.desfavoritar();
-                        console.log(this.state.favorito)
                         if (this.props.favoritos)
                             this.props.removeNoticia()
                     }}>
                     <FontAwesomeIcon icon={faHeart} color={this.state.corFavorito} />
-                &nbsp;
-                {this.state.textoFavorito}
+                    &nbsp;
+                    {this.state.textoFavorito}
                 </span>
             </div>
         );

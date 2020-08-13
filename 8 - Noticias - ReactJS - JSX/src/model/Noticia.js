@@ -6,6 +6,8 @@
  * 
  */
 
+import Helper from "../helper/helper";
+
 class Noticia {
 
     /**
@@ -31,6 +33,14 @@ class Noticia {
         this.conteudo = conteudo;
         this.canal = canal;
         this.favorito = favorito;
+    }
+
+    dataFormatada(){
+        return Helper.formataDataHoraTela(this.data);
+    }
+
+    autorMaisCanal(){
+        return (this.autor) ? this.autor + " - " + this.canal : this.canal;
     }
 }
 

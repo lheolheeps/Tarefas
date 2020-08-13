@@ -7,18 +7,22 @@ class Container extends React.Component {
         this.state = {
             noticias: props.noticias,
         };
-        this.removeNoticia = this.removeNoticia.bind(this);
     }
 
     removeNoticia(index) {
-        console.log(index);
-        this.setState((prevState) => {
-            let noticias = prevState.noticias;
-            noticias.splice(index, 1);
-            return {
-                noticias: noticias,
-            }
+        let noticias = this.state.noticias;
+        noticias.splice(index, 1);
+        this.setState({
+            noticias: noticias
         })
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.noticias !== prevProps.noticias) {
+            this.setState({
+                noticias: this.props.noticias,
+            });
+        }
     }
 
     render() {
@@ -27,7 +31,7 @@ class Container extends React.Component {
                 <h1 className="titulo">Noticias do Brasil <span id="favorito"><br />Favoritos</span></h1>
                 <section className="noticias" id="noticias">
                     {this.state.noticias.map((noticia, index) => {
-                        return <Card key={index} favoritos={this.props.favoritos} removeNoticia = {() => {this.removeNoticia(index)}} noticia={noticia} controller={this.props.controller} />
+                        return <Card key={noticia.url} favoritos={this.props.favoritos} removeNoticia={() => { this.removeNoticia(index) }} noticia={noticia} controller={this.props.controller} />
                     })}
                 </section>
             </main>
