@@ -8,6 +8,8 @@
  * 
  */
 
+import Helper from "./helper";
+
 class Tarefa {
 
     /**
@@ -23,6 +25,10 @@ class Tarefa {
         this.descricao = descricao;
         this.data = data;
         this.situacao = situacao;
+    }
+
+    dataFormatada(){
+        return Helper.formataData(this.data);
     }
 }
 

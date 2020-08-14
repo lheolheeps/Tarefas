@@ -16,28 +16,40 @@ class Tarefas extends React.Component {
     }
 
     adicionar() {
-        let objTarefa = new ObjTarefa(null, this.state.novo, this.state.data, false);
+        if (this.state.novo !== "" && this.state.data !== "") {
+            let objTarefa = new ObjTarefa(null, this.state.novo, this.state.data, false);
+            let tarefaDAO = new TarefaDAO();
+            tarefaDAO.inserir(objTarefa);
+            let tarefas = this.state.tarefas;
+            tarefas.push(objTarefa);
+            this.setState({
+                tarefas: tarefas,
+                novo: "",
+                data: "",
+            })
+        }
+    }
+
+    remover(id, index) {
         let tarefaDAO = new TarefaDAO();
-        tarefaDAO.inserir(objTarefa);
+        tarefaDAO.excluir(id);
         let tarefas = this.state.tarefas;
-        tarefas.push(objTarefa);
+        tarefas.splice(index, 1);
         this.setState({
-            tarefas: tarefas,
-            novo: "",
-            data: "",
+            tarefas: tarefas
         })
     }
 
-    remover() {
-        let objTarefa = new ObjTarefa(null, this.state.novo, this.state.data, false);
-        let tarefaDAO = new TarefaDAO();
-        tarefaDAO.inserir(objTarefa);
-        let tarefas = this.state.tarefas;
-        tarefas.push(objTarefa);
-        this.setState({
-            tarefas: tarefas,
-            novo: "",
-            data: "",
+    alterarSituacao(id, index) {
+        let tarefaDAO = new TarefaDAO()
+        tarefaDAO.obter(id, (tarefa) => {
+            tarefa.situacao = (tarefa.situacao) ? false : true;
+            tarefaDAO.alterar(tarefa);
+            let tarefas = this.state.tarefas;
+            tarefas[index].situacao = (tarefas[index].situacao) ? false : true;
+            this.setState({
+                tarefas: tarefas,
+            })
         })
     }
 
@@ -55,17 +67,17 @@ class Tarefas extends React.Component {
                             </tr>
                         </thead>
                         <tbody id="tarefas">
-                            {this.state.tarefas.map((tarefa) => {
-                                return <Tarefa key={tarefa.id} tarefa={tarefa} />
+                            {this.state.tarefas.map((tarefa, index) => {
+                                return <Tarefa key={tarefa.id} tarefa={tarefa} remover={(id) => this.remover(id, index)} alterarSituacao={(id) => this.alterarSituacao(id, index)} />
                             })}
                         </tbody>
                         <tfoot>
                             <tr id="formulario">
-                                <td><input type="text" id="novo" onChange={(e) => {
-                                    this.setState({ data: e.target.value })
-                                }} /></td>
-                                <td><input type="date" id="data" onChange={(e) => {
+                                <td><input type="text" id="novo" value={this.state.novo} onChange={(e) => {
                                     this.setState({ novo: e.target.value })
+                                }} /></td>
+                                <td><input type="date" id="data" value={this.state.data} onChange={(e) => {
+                                    this.setState({ data: e.target.value })
                                 }} /></td>
                                 <td><input type="submit" id="adicionar" value="Adicionar" onClick={() => {
                                     this.adicionar();

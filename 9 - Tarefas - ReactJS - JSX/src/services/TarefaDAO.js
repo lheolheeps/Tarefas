@@ -1,6 +1,5 @@
 import IndexedDB from './IndexedDB';
 import Tarefa from './Tarefa';
-import Helper from './helper';
 
 /** 
  * Controlador de Banco de Dados
@@ -45,7 +44,7 @@ class TarefaDAO {
             objectStore.openCursor().onsuccess = function (event) {
                 var cursor = event.target.result;
                 if (cursor) {
-                    let tarefa = new Tarefa(cursor.value.id, Helper.formataData(cursor.value.descricao), cursor.value.data, cursor.value.situacao);
+                    let tarefa = new Tarefa(cursor.value.id, cursor.value.descricao, cursor.value.data, cursor.value.situacao);
                     lista.push(tarefa);
                     cursor.continue();
                 } else {
@@ -61,13 +60,13 @@ class TarefaDAO {
      * @param {Number} id
      * @param {Function} callback 
      */
-    obter(id, callback) {
-        let transaction = this.conexao.transaction("tarefa", "readonly");
+    async obter(id, callback) {
+        let transaction = (await this.conexao).transaction("tarefa", "readonly");
         let objectStore = transaction.objectStore("tarefa");
         objectStore.get(parseInt(id)).onsuccess = (request) => {
             let tarefa = false;
-            if (request.result !== undefined) {
-                tarefa = new Tarefa(request.result.id, Helper.formataData(request.result.descricao), request.result.data, request.result.situacao);
+            if (request.target.result !== undefined) {
+                tarefa = new Tarefa(request.target.result.id, request.target.result.descricao, request.target.result.data, request.target.result.situacao);
             }
             callback(tarefa);
         }
@@ -78,8 +77,8 @@ class TarefaDAO {
      * 
      * @param {Tarefa} tarefa
      */
-    alterar(tarefa) {
-        let transaction = this.conexao.transaction("tarefa", "readwrite");
+    async alterar(tarefa) {
+        let transaction = (await this.conexao).transaction("tarefa", "readwrite");
         let objectStore = transaction.objectStore("tarefa");
         objectStore.put(tarefa, parseInt(tarefa.id));
 
@@ -90,8 +89,8 @@ class TarefaDAO {
      * 
      * @param {Number} id
      */
-    excluir(id) {
-        let transaction = this.conexao.transaction("tarefa", "readwrite");
+    async excluir(id) {
+        let transaction = (await this.conexao).transaction("tarefa", "readwrite");
         let objectStore = transaction.objectStore("tarefa");
         objectStore.delete(parseInt(id));
     }

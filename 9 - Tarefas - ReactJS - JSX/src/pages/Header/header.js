@@ -34,6 +34,9 @@ class Header extends React.Component {
                     <li className="item">
                         <Link className="link href" to="/calculadora">Calculadora</Link>
                     </li>
+                    <li className="item">
+                        <Link className="link href" to="/noticias/pais">Noticias</Link>
+                    </li>
                 </ul>
             </header>
         );

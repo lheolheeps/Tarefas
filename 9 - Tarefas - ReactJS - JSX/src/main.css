@@ -1,7 +1,9 @@
 body {
+  font-feature-settings: normal;
   font-variant: small-caps !important;
   margin: 0;
   padding: 0;
+  background-color: lightgray;
 }
 
 h1 {

@@ -1,18 +1,22 @@
 import React from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Tarefa from './pages/Tarefas/tarefas';
-import Calculadora from './pages/Calculadora/calculadora';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from './pages/Header/header';
+import Tarefas from './pages/Tarefas/tarefas';
+import Calculadora from './pages/Calculadora/calculadora';
+import Noticias from './pages/Noticias/noticias';
 
-class Routes extends React.Component{
-    render(){
+class Routes extends React.Component {
+    render() {
         return (
             <BrowserRouter>
-            <Header />
+                <Header />
                 <Switch>
-                    <Route path="/" render={props => <Tarefa tarefas={this.props.tarefas}/>} />
-                    <Route path="/tarefas" render={props => <Tarefa tarefas={this.props.tarefas}/>} />
+                    <Route path="/" exact render={props => <Tarefas tarefas={this.props.tarefas} />} />
+                    <Route path="/tarefas" render={props => <Tarefas tarefas={this.props.tarefas} />} />
                     <Route path="/calculadora" component={Calculadora} />
+                    <Route path="/noticias/pais" exact render={props => <Noticias pais={true} />} />
+                    <Route path="/noticias/pesquisa" exact render={props => <Noticias pesquisa={true} />} />
+                    <Route path="/noticias/favoritos" exact render={props => <Noticias favoritos={true} />} />
                 </Switch>
             </BrowserRouter>
         )

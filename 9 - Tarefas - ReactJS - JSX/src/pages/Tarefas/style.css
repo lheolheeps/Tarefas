@@ -1,4 +1,4 @@
-.lista{
+.lista {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -6,6 +6,7 @@
 }
 
 table {
+  background-color: #fefefe;
   border-collapse: collapse;
 }
 
@@ -31,4 +32,8 @@ table input[type="text"]:focus {
 .excluir {
   color: red;
   cursor: pointer;
+}
+
+.concluida {
+  background-color: #ddd;
 }
