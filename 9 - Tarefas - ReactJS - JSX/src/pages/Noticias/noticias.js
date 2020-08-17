@@ -104,7 +104,7 @@ class Noticias extends React.Component {
                     -
                     <Link className="linkOpcoes" to="/noticias/pesquisa" >Pesquisa</Link>
                     -
-                    <Link className="linkOpcoes" to="/noticias/favoritos" >Favoritos</Link>
+                    <Link className="linkOpcoes" to="/noticias/favoritos" >Favoritas</Link>
                 </div>
                 <div className="opcoes">
                     {(this.props.tipo === "pesquisa") ?

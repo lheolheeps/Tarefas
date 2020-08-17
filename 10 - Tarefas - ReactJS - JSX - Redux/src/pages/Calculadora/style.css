@@ -1,0 +1,39 @@
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.calculadora {
+  font-size: 2rem;
+}
+
+.calculadora td, .calculadora th {
+  min-height: 5rem;
+  min-width: 4rem;
+  padding: 1rem 0.5rem;
+  cursor: pointer;
+}
+
+.calculadora span {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 1rem;
+  background-color: purple;
+  padding: 1rem;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+.calculadora table {
+  margin: auto;
+  background-color: #fefefe;
+  padding: 0.2rem;
+}

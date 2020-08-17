@@ -1,0 +1,39 @@
+.lista {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+}
+
+table {
+  background-color: #fefefe;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+table input[type="text"] {
+  font-variant: small-caps;
+  border: none;
+}
+
+table input[type="text"]:focus {
+  outline: none;
+}
+
+.tarefa {
+  text-align: left;
+}
+
+.excluir {
+  color: red;
+  cursor: pointer;
+}
+
+.concluida {
+  background-color: #ddd;
+}
