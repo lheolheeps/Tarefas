@@ -16,9 +16,9 @@ class Routes extends React.Component {
                     <Route path="/" exact render={props => <Tarefas tarefas={this.props.tarefas} />} />
                     <Route path="/tarefas" render={props => <Tarefas tarefas={this.props.tarefas} />} />
                     <Route path="/calculadora" component={Calculadora} />
-                    <Route path="/noticias/pais" exact render={props => <Noticias pais={true} />} />
-                    <Route path="/noticias/pesquisa" exact render={props => <Noticias pesquisa={true} />} />
-                    <Route path="/noticias/favoritos" exact render={props => <Noticias favoritos={true} />} />
+                    <Route path="/noticias/pais" exact render={props => <Noticias tipo="pais" />} />
+                    <Route path="/noticias/pesquisa" exact render={props => <Noticias tipo="pesquisa" />} />
+                    <Route path="/noticias/favoritos" exact render={props => <Noticias tipo="favoritos" />} />
                 </Switch>
             </BrowserRouter>
         )

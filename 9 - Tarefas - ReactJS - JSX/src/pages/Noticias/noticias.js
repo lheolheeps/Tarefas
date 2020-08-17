@@ -21,6 +21,16 @@ class Noticias extends React.Component {
         }, '1500');
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.tipo !== this.props.tipo) {
+            this.state.noticias = [];
+            this.setState({});
+            setTimeout(() => {
+                this.obterNoticias();
+            }, '1500');
+        }
+    }
+
     gerenciarFavoritos(noticia, index) {
         let noticiaDAO = new NoticiaDAO();
         if (noticia.favorito) {
@@ -29,7 +39,7 @@ class Noticias extends React.Component {
             noticiaDAO.inserir(noticia);
         }
         let noticias = this.state.noticias;
-        if (this.props.favoritos) {
+        if (this.props.tipo === "favoritos") {
             noticias.splice(index, 1);
         } else {
             noticias[index].favorito = (noticias[index].favorito) ? false : true;
@@ -42,7 +52,7 @@ class Noticias extends React.Component {
     async obterNoticias() {
         let noticiaDAO = new NoticiaDAO();
         let noticias = [];
-        if (this.props.favoritos) {
+        if (this.props.tipo === "favoritos") {
             noticiaDAO.listar((lista) => {
                 lista.sort((a, b) => Helper.sortAscending(a, b, "data"));
                 noticias = lista;
@@ -55,7 +65,7 @@ class Noticias extends React.Component {
             noticiaDAO.listar(async (favoritos) => {
                 let newsApi = new NewsApi();
                 let json = [];
-                if (this.props.pais) {
+                if (this.props.tipo === "pais") {
                     json = await newsApi.getHeadlines({ country: this.state.busca });
                 } else {
                     json = await newsApi.getEverything({ q: this.state.busca });
@@ -88,28 +98,23 @@ class Noticias extends React.Component {
     render() {
         return (
             <main className="container container-noticias">
-                <h1 className="titulo">{(this.props.favoritos) ? "Noticias Favoritas" : "Ultimas Noticias"}</h1>
+                <h1 className="titulo">{(this.props.tipo === "favoritos") ? "Noticias Favoritas" : "Ultimas Noticias"}</h1>
                 <div className="opcoes">
-                    {(this.props.pesquisa) ?
-                        (<input type="text" onKeyUp={(e) => {
-                            if (e.keyCode === 13) {
-                                this.buscar(e.target.value)
-                            }
-                        }} />)
-                        :
-                        (<select onChange={(e) => {
-                            this.buscar(e.target.value)
-                        }}>
-                            <option value="br">Brásil</option>
-                            <option value="us">Estados Unidos</option>
-                        </select>)
-                    }
-                    <br />
                     <Link className="linkOpcoes" to="/noticias/pais" >Pais</Link>
                     -
                     <Link className="linkOpcoes" to="/noticias/pesquisa" >Pesquisa</Link>
                     -
                     <Link className="linkOpcoes" to="/noticias/favoritos" >Favoritos</Link>
+                </div>
+                <div className="opcoes">
+                    {(this.props.tipo === "pesquisa") ?
+                        (<input type="text" onKeyUp={(e) => { if (e.keyCode === 13) this.buscar(e.target.value) }} />)
+                    : (this.props.tipo === "pais") ?
+                        (<select onChange={(e) => { this.buscar(e.target.value) }}>
+                            <option value="br">Brásil</option>
+                            <option value="us">Estados Unidos</option>
+                        </select>)
+                    : ""}
                 </div>
                 <section className="noticias" id="noticias">
                     {(this.state.noticias.length === 0) ? "Buscando Noticias..." :
