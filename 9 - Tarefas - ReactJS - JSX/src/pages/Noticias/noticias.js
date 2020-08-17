@@ -86,23 +86,25 @@ class Noticias extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <main className="container container-noticias">
                 <h1 className="titulo">{(this.props.favoritos) ? "Noticias Favoritas" : "Ultimas Noticias"}</h1>
                 <div className="opcoes">
-                    {(this.props.pesquisa) ? (
-                        <input type="text" onKeyUp={(e) => {
+                    {(this.props.pesquisa) ?
+                        (<input type="text" onKeyUp={(e) => {
                             if (e.keyCode === 13) {
                                 this.buscar(e.target.value)
                             }
-                        }} />) : (
-                            <select onChange={(e) => {
-                                this.buscar(e.target.value)
-                            }}>
-                                <option value="br">Brásil</option>
-                                <option value="us">Estados Unidos</option>
-                            </select>)}
+                        }} />)
+                        :
+                        (<select onChange={(e) => {
+                            this.buscar(e.target.value)
+                        }}>
+                            <option value="br">Brásil</option>
+                            <option value="us">Estados Unidos</option>
+                        </select>)
+                    }
+                    <br />
                     <Link className="linkOpcoes" to="/noticias/pais" >Pais</Link>
                     -
                     <Link className="linkOpcoes" to="/noticias/pesquisa" >Pesquisa</Link>

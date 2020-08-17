@@ -4,6 +4,7 @@ import Header from './pages/Header/header';
 import Tarefas from './pages/Tarefas/tarefas';
 import Calculadora from './pages/Calculadora/calculadora';
 import Noticias from './pages/Noticias/noticias';
+// import Erro404 from "./pages/404/404";
 
 class Routes extends React.Component {
     render() {
@@ -11,6 +12,7 @@ class Routes extends React.Component {
             <BrowserRouter>
                 <Header />
                 <Switch>
+                    {/* <Route path="*" component={Erro404} /> */}
                     <Route path="/" exact render={props => <Tarefas tarefas={this.props.tarefas} />} />
                     <Route path="/tarefas" render={props => <Tarefas tarefas={this.props.tarefas} />} />
                     <Route path="/calculadora" component={Calculadora} />
