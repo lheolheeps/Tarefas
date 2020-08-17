@@ -22,7 +22,7 @@ class Card extends React.Component {
                         &nbsp; Ver Mais
                     </a>
                     <hr />
-                    <span className="favorito" onClick={() => this.props.gerenciarFavoritos(this.props.noticia) }>
+                    <span className="favorito" onClick={() => {if(window.confirm("Deseja Desfavoritar esta Noticia?")) this.props.gerenciarFavoritos(this.props.noticia) }}>
                         {(this.props.noticia.favorito) ? "Desfavoritar" : "Favoritar"} &nbsp;
                         <FontAwesomeIcon icon={faHeart} color={(this.props.noticia.favorito) ? "red" : "black"} />
                     </span>
