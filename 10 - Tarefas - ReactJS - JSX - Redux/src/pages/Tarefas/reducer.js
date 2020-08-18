@@ -1,37 +1,43 @@
 import ObjTarefa from "../../services/Tarefa";
 import TarefaDAO from '../../services/TarefaDAO';
 
-const reducer = (state = { tarefas: [], novo: "", data: "" }, action) => {
+const inicial = {
+    tarefas: [], 
+    inicio: false, 
+    novo: "", 
+    data: ""
+}
+
+const reducer = (state = inicial, action) => {
     let tarefaDAO = new TarefaDAO();
-    let tarefas = state.tarefas;
+    let tarefas = [...state.tarefas];
     switch (action.type) {
-        case 'AlterarSituacao':
+        case 'tarefas/AlterarSituacao':
             let tarefa = tarefas[action.index];
             tarefa.situacao = (tarefa.situacao) ? false : true;
-            tarefaDAO.alterar(tarefa);
-            tarefas[action.index].situacao = (tarefas[action.index].situacao) ? false : true;
+            tarefaDAO.alterar(tarefa);           
             return {
                 ...state,
                 tarefas: tarefas
             }
-        case 'Remover':
+        case 'tarefas/Remover':
             tarefaDAO.excluir(action.id);
             tarefas.splice(action.index, 1);
             return {
                 ...state,
                 tarefas: tarefas
             }
-        case 'novo':
+        case 'tarefas/GuardarTitulo':
             return {
                 ...state,
                 novo: action.novo
             }
-        case 'data':
+        case 'tarefas/GuardarData':
             return {
                 ...state,
                 data: action.data
             }
-        case 'Adicionar':
+        case 'tarefas/Adicionar':
             if (state.novo !== "" && state.data !== "") {
                 let objTarefa = new ObjTarefa(null, state.novo, state.data, false);
                 tarefaDAO.inserir(objTarefa);
@@ -45,6 +51,12 @@ const reducer = (state = { tarefas: [], novo: "", data: "" }, action) => {
                 }
             }
             return state;
+        case 'tarefas/ListaInicial':
+            return {
+                ...state,
+                inicio: true,
+                tarefas: action.tarefas
+            }
         default:
             return state;
     }

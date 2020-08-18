@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './style.css';
 import Tarefa from './tarefa';
 import { connect } from 'react-redux';
+import TarefaDAO from '../../services/TarefaDAO';
 
 const Tarefas = (props) => {
+    useEffect(() => {
+        if (!props.inicio) {
+            let tarefaDAO = new TarefaDAO();
+            tarefaDAO.listar().then((lista) => {
+                props.dispatch({ type: 'tarefas/ListaInicial', tarefas: lista});
+            });
+        }
+    });
+
     return (
         <main className="container">
             <h1>Lista de Tarefas</h1>
@@ -18,19 +28,19 @@ const Tarefas = (props) => {
                     </thead>
                     <tbody id="tarefas">
                         {props.tarefas.map((tarefa, index) => {
-                            return <Tarefa key={tarefa.id} tarefa={tarefa} index={index} />
+                            return <Tarefa key={tarefa.id+tarefa.situacao} tarefa={tarefa} index={index} />
                         })}
                     </tbody>
                     <tfoot>
                         <tr id="formulario">
                             <td><input type="text" id="novo" value={props.novo} onChange={(e) => {
-                                props.dispatch({type: 'novo', novo: e.target.value})
+                                props.dispatch({ type: 'tarefas/GuardarTitulo', novo: e.target.value })
                             }} /></td>
                             <td><input type="date" id="data" value={props.data} onChange={(e) => {
-                                props.dispatch({type: 'data', data: e.target.value})
+                                props.dispatch({ type: 'tarefas/GuardarData', data: e.target.value })
                             }} /></td>
-                            <td><input type="submit" id="adicionar" value="Adicionar" onClick={ () => {
-                                props.dispatch({type: 'Adicionar'})
+                            <td><input type="submit" id="adicionar" value="Adicionar" onClick={() => {
+                                props.dispatch({ type: 'tarefas/Adicionar' });
                             }} /></td>
                         </tr>
                     </tfoot>
@@ -42,9 +52,10 @@ const Tarefas = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        tarefas: state.tarefas,
-        novo: state.novo,
-        data: state.data
+        tarefas: state.TarefasReducer.tarefas,
+        inicio: state.TarefasReducer.inicio,
+        novo: state.TarefasReducer.novo,
+        data: state.TarefasReducer.data
     }
 };
 

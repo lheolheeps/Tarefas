@@ -2,24 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './main.css';
 import Routes from './routes';
-import reducer from './pages/Tarefas/reducer';
+import TarefasReducer from './pages/Tarefas/reducer';
+import NoticiasReducer from './pages/Noticias/reducer';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import TarefaDAO from './services/TarefaDAO';
+import { createStore, combineReducers } from 'redux';
 
-const store = createStore(reducer)
+const store = createStore(
+  combineReducers({
+    TarefasReducer,
+    NoticiasReducer
+  })
+);
 
-
-let tarefaDAO = new TarefaDAO();
-tarefaDAO.listar().then((lista) => {
-  ReactDOM.render(
-    <React.StrictMode>
-      <Provider store={store}>
-        <Routes tarefas = {lista}/>
-      </Provider>
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-})
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <Routes />
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 

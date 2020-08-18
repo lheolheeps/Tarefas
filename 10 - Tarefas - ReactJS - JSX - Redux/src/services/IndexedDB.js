@@ -20,6 +20,7 @@ class IndexedDB {
                 console.log("Atualizando banco de dados");
                 this.conexao = event.target.result;
                 this.conexao.createObjectStore("tarefa", { autoIncrement: true });
+                this.conexao.createObjectStore("noticia", { keyPath: "url" });
             };
     
             request.onsuccess = (event) => {

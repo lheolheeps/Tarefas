@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../../img/keep.png';
 import './style.css';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
 
@@ -33,6 +33,9 @@ class Header extends React.Component {
                     </li>
                     <li className="item">
                         <Link className="link href" to="/calculadora">Calculadora</Link>
+                    </li>
+                    <li className="item">
+                        <Link className="link href" to="/noticias">Noticias</Link>
                     </li>
                 </ul>
             </header>

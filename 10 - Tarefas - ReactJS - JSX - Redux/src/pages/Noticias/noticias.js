@@ -1,6 +1,5 @@
 import React from 'react';
 import './style.css';
-import mock from './mock';
 import Card from './card';
 import NewsApi from "../../services/NewsApi";
 import Noticia from "../../services/Noticia";
@@ -61,7 +60,7 @@ class Noticias extends React.Component {
             noticiaDAO.listar((lista) => {
                 lista.sort((a, b) => Helper.sortAscending(a, b, "data"));
                 noticias = lista;
-                if (noticias.length === 0)
+                if(noticias.length === 0)
                     vazio = true;
                 this.setState({
                     noticias: noticias,
@@ -78,8 +77,6 @@ class Noticias extends React.Component {
                 } else {
                     json = await newsApi.getEverything({ q: this.state.busca });
                 }
-                if (json.length === 0)
-                    json = mock;
                 json.articles.forEach(article => {
                     let favorito = false;
                     favoritos.forEach(noticia => {
@@ -89,7 +86,7 @@ class Noticias extends React.Component {
                     let noticia = new Noticia(article.author, article.title, article.description, article.url, article.urlToImage, Helper.retiraLetrasDataHora(article.publishedAt), article.content, article.source.name, favorito);
                     noticias.push(noticia);
                 });
-                if (noticias.length === 0)
+                if(noticias.length === 0)
                     vazio = true;
                 this.setState({
                     noticias: noticias,
@@ -102,9 +99,9 @@ class Noticias extends React.Component {
     buscar(value) {
         this.setState({
             noticias: [],
-            vazio: false
+            vazio: false,
+            busca: value
         });
-        this.state.busca = value
         setTimeout(() => {
             this.obterNoticias();
         }, '1500');
@@ -131,11 +128,13 @@ class Noticias extends React.Component {
                         </select>)
                     : ""}
                 </div>
+                <div className="opcoes">
+                    {(this.state.noticias.length === 0) ? (this.state.vazio) ? "Nenhuma Noticia Encontrada" : "Buscando Noticias" : ""}
+                </div>
                 <section className="noticias" id="noticias">
-                    {(this.state.noticias.length === 0) ? (this.state.vazio) ? "Nenhuma Noticia Encontrada" : "Buscando Noticias" :
-                        this.state.noticias.map((noticia, index) => {
-                            return <Card key={noticia.url} noticia={noticia} gerenciarFavoritos={(noticia) => { this.gerenciarFavoritos(noticia, index) }} />
-                        })}
+                    {this.state.noticias.map((noticia, index) => {
+                        return <Card key={noticia.url} noticia={noticia} gerenciarFavoritos={(noticia) => { this.gerenciarFavoritos(noticia, index) }} />
+                    })}
                 </section>
             </main>
         );
