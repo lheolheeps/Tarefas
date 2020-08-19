@@ -24,8 +24,11 @@ const Card = (props) => {
                 <hr />
                 <span className="favorito"
                     onClick={() => {
-                        if (window.confirm("Deseja Desfavoritar esta Noticia?"))
-                            props.dispatch({type: "noticias/GerenciarFavoritos", noticia: props.noticia, index: props.index});
+                            let pode = true;
+                            if(props.tipo === "favoritos")
+                                pode = window.confirm("Deseja Desfavoritar essa Noticia")
+                            if(pode)
+                                props.dispatch({type: "noticias/GerenciarFavoritos", noticia: props.noticia, index: props.index});
                     }}>
                     {(props.noticia.favorito) ? "Desfavoritar" : "Favoritar"} &nbsp;
                         <FontAwesomeIcon icon={faHeart} color={(props.noticia.favorito) ? "red" : "black"} />
