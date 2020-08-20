@@ -1,22 +1,16 @@
 import { StyleSheet } from "react-native";
+import Constants from 'expo-constants';
 
 export default StyleSheet.create({
     body: {
         margin: 0,
         padding: 0,
         backgroundColor: "lightgray",
-    },
-
-    h1: {
-        textAlign: "center",
-        fontSize: "1.8em",
+        flex:1,
+        paddingTop: Constants.statusBarHeight,
     },
 
     container: {
-        paddingTop: "72px",
+        paddingTop: 10,
     },
-
-    smallCaps: {
-        fontVariant: ["small-caps"],
-    }
 })
