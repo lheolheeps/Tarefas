@@ -62,6 +62,11 @@ export default StyleSheet.create({
     justifyContent: "space-around",
   },
 
+  acoes: {
+    alignItems: "center",
+    alignContent: "center"
+  },
+
   excluir: {
     color: "red",
   },

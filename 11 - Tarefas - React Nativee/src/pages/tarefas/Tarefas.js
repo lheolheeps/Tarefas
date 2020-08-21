@@ -8,8 +8,7 @@ import DatePicker from 'react-native-datepicker'
 class Tarefas extends React.Component {
     render() {
         return (
-            <View style={{ flex: 1 }}>
-                <Text style={[styles.titulo, styles.smallCaps]}>Lista de Tarefas</Text>
+            <View style={{ flex: 1, backgroundColor: "lightgray", paddingTop: 10 }}>
                 <FlatList contentContainerStyle={styles.cards}
                     data={this.props.tarefas}
                     renderItem={(item) => {
