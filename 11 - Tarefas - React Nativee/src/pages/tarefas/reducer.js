@@ -28,7 +28,7 @@ const mock = [
 ];
 
 const inicial = {
-    tarefas: mock,
+    tarefas: [],
     inicio: false,
     novo: "",
     data: "",

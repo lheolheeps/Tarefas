@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './style.js';
-import { View, Text, FlatList, TextInput, Button } from 'react-native';
+import { View, Text, FlatList, TextInput, Button, TouchableOpacity,  StyleSheet } from 'react-native';
 import Tarefa from "./Tarefa";
 import { connect } from 'react-redux';
 import DatePicker from 'react-native-datepicker'
@@ -44,7 +44,10 @@ class Tarefas extends React.Component {
                             onDateChange={(data) => { this.props.guardarData(data) }}
                         />
                     </View>
-                    <Button onPress={() => { this.props.adicionar() }} title="Adicionar"></Button>
+                    <TouchableOpacity onPress={() => { this.props.adicionar() }}>
+                        <Text style={styles.botao}>Adicionar</Text>
+                    </TouchableOpacity>
+                    {/* <Button onPress={() => { this.props.adicionar() }} title="Adicionar"></Button> */}
                 </View>
             </View>
         );

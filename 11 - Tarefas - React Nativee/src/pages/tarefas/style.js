@@ -31,6 +31,17 @@ export default StyleSheet.create({
     borderWidth: 1,
     width: 150,
     backgroundColor: "white",
+    fontVariant: ["small-caps"],
+  },
+  
+  botao: {
+    width: "100%",
+    color: "white",
+    textAlign: "center",
+    textTransform: "uppercase",
+    padding: 8,
+    backgroundColor: "#353B3A",
+    fontVariant: ["small-caps"],
   },
 
   cards: {
@@ -43,7 +54,7 @@ export default StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 10,
     marginBottom: 15,
-    width: 300,
+    width: 340,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

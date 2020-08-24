@@ -13,7 +13,8 @@ import Helper from './helper';
 class NewsApi {
 
     baseUrl = "https://newsapi.org/v2/";
-    apiKey = "c055c4ef28b941ff802f0d8e925ae920";
+    // apiKey = "c055c4ef28b941ff802f0d8e925ae920";
+    apiKey = "e9ef481ddf964e129e60dd04f939f78c";
 
     /**
      * Obtem as noticias mais quentes do brasil

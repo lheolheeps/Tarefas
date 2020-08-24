@@ -1,27 +1,27 @@
 import React, { useEffect } from 'react';
-import { View, Text, FlatList, TextInput, Button, Picker } from 'react-native';
+import { View, Text, FlatList, TextInput, Button, Picker, TouchableHighlight, TouchableOpacity } from 'react-native';
 import styles from './style.js';
-import Card from './card';
+import Card from './Card';
 import NewsApi from "../../services/NewsApi";
 import Noticia from "../../services/Noticia";
 import Helper from "../../services/helper";
 import { connect } from 'react-redux';
 
-async function obterNoticias(props, busca = undefined) {
+async function obterNoticias(props, tipo, busca = undefined) {
     let noticias = [];
     let vazio = false;
-    if (props.tipo === "favoritos") {
-        // noticiaDAO.listar((lista) => {
-        //     lista.sort((a, b) => Helper.sortAscending(a, b, "data"));
-        //     noticias = lista;
-        //     if (noticias.length === 0)
-        //         vazio = true;
-        //     props.dispatch({ type: 'noticias/Atualizar', noticias: noticias, vazio: vazio, busca: undefined, tipo: props.tipo });
-        // });
+    if (tipo === "favoritos") {
+        if (props.favoritos.length === 0) {
+            vazio = true;
+        } else {
+            noticias = props.favoritos;
+            noticias.sort((a, b) => Helper.sortAscending(a, b, "data"));
+        }
+        props.dispatch({ type: 'noticias/Atualizar', noticias: noticias, vazio: vazio, busca: undefined, tipo: 'favoritos', primeira: false });
     } else {
         let newsApi = new NewsApi();
         let json = [];
-        if (props.tipo === "pais") {
+        if (tipo === "pais") {
             json = await newsApi.getHeadlines({ country: busca });
         } else {
             json = await newsApi.getEverything({ q: busca });
@@ -37,36 +37,52 @@ async function obterNoticias(props, busca = undefined) {
         });
         if (noticias.length === 0)
             vazio = true;
-        props.dispatch({ type: 'noticias/Atualizar', noticias: noticias, vazio: vazio, busca: busca, tipo: props.tipo });
+        props.dispatch({ type: 'noticias/Atualizar', noticias: noticias, vazio: vazio, busca: busca, tipo: tipo, primeira: false });
     }
 }
 
-function buscar(props, busca) {
-    obterNoticias(props, busca);
+function atualizar(props, tipo, busca) {
+    obterNoticias(props, tipo, busca);
 }
 
 const Noticias = (props) => {
 
     useEffect(() => {
-        if (props.mudou) {
-            obterNoticias(props);
+        if (props.primeira) {
+            obterNoticias(props, props.tipo);
         }
     })
 
     return (
         <View style={{ flex: 1, backgroundColor: "lightgray", paddingTop: 10 }}>
+            <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
+                <TouchableOpacity
+                    onPress={() => {
+                        atualizar(props, 'pais');
+                        props.navigation.setOptions({ headerTitle: 'Noticias por Pais' });
+                    }}>
+                    <Text style={styles.botao}>Pais</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => {
+                        atualizar(props, 'pesquisa')
+                        props.navigation.setOptions({ headerTitle: 'Pesquisa de Noticias' })
+                    }}>
+                    <Text style={styles.botao}>Pesquisa</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => {
+                        atualizar(props, 'favoritos')
+                        props.navigation.setOptions({ headerTitle: 'Noticias Favoritas' })
+                    }}>
+                    <Text style={styles.botao}>Favoritas</Text>
+                </TouchableOpacity>
+            </View>
             <View style={styles.opcoes}>
                 {(props.tipo === "pesquisa") ?
-                    (<Textinput
-                        value={props.busca}
-                        onChangeText={(text) => { buscar(props, text) }}
-                    />)
+                    (<TextInput value={props.busca} style={styles.input} placeholder="Sua Busca" onChangeText={(text) => { atualizar(props, props.tipo, text) }} />)
                     : (props.tipo === "pais") ?
-                        (<Picker
-                            selectedValue={props.busca}
-                            style={{ height: 50, width: 150 }}
-                            onValueChange={(itemValue) => buscar(props, itemValue)}
-                        >
+                        (<Picker selectedValue={props.busca} style={styles.input} itemStyle={{textAlign: "center", fontVariant: ["small-caps"]}} onValueChange={(itemValue) => atualizar(props, props.tipo, itemValue)}>
                             <Picker.Item label="Brásil" value="br" />
                             <Picker.Item label="Estados Unidos" value="us" />
                         </Picker>)
@@ -83,22 +99,19 @@ const Noticias = (props) => {
                     return <Card key={item.item.url + item.item.favorito} tipo={props.tipo} noticia={item.item} index={item.index} />
                 }}
             />
-            <Button onPress={() => props.navigation.navigate('Favoritos')} title="Favoritas"></Button>
         </View>
     );
 }
 
-const mapStateToProps = (state, ownProps) => {
-    console.log(ownProps.route.params.headerTitle, state.NoticiasReducer.tipo);
+const mapStateToProps = (state) => {
     return {
         noticias: state.NoticiasReducer.noticias,
         favoritos: state.NoticiasReducer.favoritos,
         vazio: state.NoticiasReducer.vazio,
-        tipo: ownProps.route.params.headerTitle,
+        tipo: state.NoticiasReducer.tipo,
         busca: state.NoticiasReducer.busca,
-        mudou: (state.NoticiasReducer.tipo !== ownProps.route.params.headerTitle) ? true : false
+        primeira: state.NoticiasReducer.primeira,
     }
 }
 
 export default connect(mapStateToProps)(Noticias);
-// export default Noticiass;

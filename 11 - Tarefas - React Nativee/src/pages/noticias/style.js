@@ -9,7 +9,7 @@ export default StyleSheet.create({
   opcoes: {
     flexDirection: "row",
     justifyContent: "center",
-    marginBottom: 20,
+    marginTop: 10,
   },
 
   linkOpcoes: {
@@ -20,8 +20,8 @@ export default StyleSheet.create({
   noticia: {
     backgroundColor: "white",
     borderRadius: 10,
-    marginBottom: 50,
-    width: 300,
+    marginBottom: 30,
+    width: 340,
   },
 
   noticiaImg: {
@@ -35,21 +35,50 @@ export default StyleSheet.create({
 
   corpoH3: {
     marginTop: 2,
-    marginBottom: 12,
-    fontSize: 100,
+    fontVariant: ["small-caps"],
+    fontSize: 16,
+    fontWeight: "bold"
   },
 
   corpoP: {
-    marginTop: 2,
+    marginTop: 6,
+    fontVariant: ["small-caps"],
   },
 
   corpoSpan: {
     textTransform: "uppercase",
     fontSize: 10,
+    fontVariant: ["small-caps"],
   },
 
   acoes: {
-    display: "flex",
+    borderTopColor: "black",
+    borderTopWidth: 1,
+    flexDirection: "row",
     justifyContent: "space-evenly",
   },
+
+  acoesLink: {
+    padding: 8,
+    display: "flex",
+    flexDirection: "row",
+  },
+
+  botao: {
+    width: 110,
+    color: "white",
+    textAlign: "center",
+    textTransform: "uppercase",
+    padding: 8,
+    backgroundColor: "#353B3A",
+    fontVariant: ["small-caps"],
+  },
+
+  input: {
+    backgroundColor: '#eee',
+    height: 30,
+    width: 150,
+    textAlign: "center", 
+    fontVariant: ["small-caps"],
+  }
 })

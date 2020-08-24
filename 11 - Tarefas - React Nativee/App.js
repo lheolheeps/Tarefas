@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Image } from 'react-native';
+import imgCalc from "./src/img/calculadora.png";
 import styles from "./Styles";
 import Tarefas from "./src/pages/tarefas/Tarefas";
 import Noticias from "./src/pages/noticias/Noticias";
@@ -12,24 +13,19 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faNewspaper, faTasks } from '@fortawesome/free-solid-svg-icons'
+import { faNewspaper, faTasks, faCalculator } from '@fortawesome/free-solid-svg-icons';
+import AsyncStorage from '@react-native-community/async-storage';
+import { persistStore, persistReducer } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 
-const store = createStore(
-  combineReducers({
-    TarefasReducer,
-    NoticiasReducer
-  })
-);
-
-// function Noticias() {
-//   return (
-//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//       <Text>Noticias!</Text>
-//     </View>
-//   );
-// }
-
-const Tab = createBottomTabNavigator();
+const persistConfig = {
+  key: 'teste2s',
+  storage: AsyncStorage
+}
+const rootReducers = combineReducers({ TarefasReducer, NoticiasReducer })
+const persistedReducer = persistReducer(persistConfig, rootReducers)
+const store = createStore(persistedReducer);
+const persistor = persistStore(store);
 
 const TarefasStack = createStackNavigator();
 function TarefasStackScreen() {
@@ -66,35 +62,45 @@ function NoticiasStackScreen() {
         headerTitleStyle: {
           color: "#fff",
         },
-    }}>
+      }}>
       <NoticiasStack.Screen name="Noticias" component={Noticias}
-        initialParams={{
-          headerTitle: "Noticias",
-        }} />
-      <NoticiasStack.Screen name="Favoritos" component={Noticias}
-        initialParams={{
-          headerTitle: "Favoritas",
+        options={{
+          headerTitle: "Noticias por Pais",
         }} />
     </NoticiasStack.Navigator>
   )
 }
 
+const Tab = createBottomTabNavigator();
+
 export default function App() {
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <View style={styles.body}>
-          <Tab.Navigator
-            tabBarOptions={{
-              activeTintColor: 'black',
-              inactiveTintColor: 'gray',
-            }}
-          >
-            <Tab.Screen name="Noticias" component={NoticiasStackScreen} />
-            <Tab.Screen name="Tarefas" component={TarefasStackScreen} />
-          </Tab.Navigator>
-        </View>
-      </NavigationContainer>
+      <PersistGate loading={null} persistor={persistor}>
+        <NavigationContainer>
+          <View style={styles.body}>
+            <Tab.Navigator
+              tabBarOptions={{
+                activeTintColor: 'black',
+                inactiveTintColor: 'gray',
+              }}
+            >
+              <Tab.Screen name="Noticias" component={NoticiasStackScreen}
+                options={{
+                  tabBarIcon: ({ color, size }) => (
+                    <FontAwesomeIcon icon={faNewspaper} color={color} size={size} />
+                  ),
+                }} />
+              <Tab.Screen name="Tarefas" component={TarefasStackScreen}
+                options={{
+                  tabBarIcon: ({ color, size }) => (
+                    <FontAwesomeIcon icon={faTasks} color={color} size={size} />
+                  ),
+                }} />
+            </Tab.Navigator>
+          </View>
+        </NavigationContainer>
+      </PersistGate>
     </Provider>
   );
 }
