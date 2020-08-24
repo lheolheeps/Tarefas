@@ -1,7 +1,7 @@
-# Lista de Tarefas
-> Aplicação em andamento no curso de React Native (Serasa/Proway)
+# Treinamento React Native
+> Aplicações realizadas no curso de React Native (Serasa/Proway)
 
-## Técnologias e Padrões Utilizados (até o momento)
+## Técnologias, APIs e Padrões Utilizados (até o momento)
 
 - HTML
 - CSS
@@ -9,5 +9,8 @@
 - IndexedDB
 - PWA
 - Fetch
+- NewsApi
 - ReactJS
 - JSX
+- Redux
+- React Native
