@@ -1,31 +1,5 @@
 import ObjTarefa from "../../services/Tarefa";
-
-const mock = [
-    {
-        id: 1,
-        descricao: 'Tarefa Mockada Numero 1',
-        data: "20/08/2020",
-        situacao: false,
-    },
-    {
-        id: 2,
-        descricao: 'Tarefa Mockada Numero 2',
-        data: "20/08/2020",
-        situacao: false,
-    },
-    {
-        id: 3,
-        descricao: 'Tarefa Mockada Numero 3',
-        data: "20/08/2020",
-        situacao: false,
-    },
-    {
-        id: 4,
-        descricao: 'Tarefa Mockada Numero 4',
-        data: "20/08/2020",
-        situacao: true,
-    },
-];
+const mock = [{id: 1,descricao: 'Tarefa Mockada Numero 1',data: "20/08/2020",situacao: false,},{id: 2,descricao: 'Tarefa Mockada Numero 2',data: "20/08/2020",situacao: false,},{id: 3,descricao: 'Tarefa Mockada Numero 3',data: "20/08/2020",situacao: false,},{id: 4,descricao: 'Tarefa Mockada Numero 4',data: "20/08/2020",situacao: true,},];
 
 const inicial = {
     tarefas: [],

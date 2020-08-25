@@ -1,55 +1,18 @@
 import React, { useEffect } from 'react';
-import { View, Text, FlatList, TextInput, Button, Picker, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, TextInput, Picker, TouchableOpacity } from 'react-native';
 import styles from './style.js';
 import Card from './Card';
-import NewsApi from "../../services/NewsApi";
-import Noticia from "../../services/Noticia";
-import Helper from "../../services/helper";
 import { connect } from 'react-redux';
 
-async function obterNoticias(props, tipo, busca = undefined) {
-    let noticias = [];
-    let vazio = false;
-    if (tipo === "favoritos") {
-        if (props.favoritos.length === 0) {
-            vazio = true;
-        } else {
-            noticias = props.favoritos;
-            noticias.sort((a, b) => Helper.sortAscending(a, b, "data"));
-        }
-        props.dispatch({ type: 'noticias/Atualizar', noticias: noticias, vazio: vazio, busca: undefined, tipo: 'favoritos', primeira: false });
-    } else {
-        let newsApi = new NewsApi();
-        let json = [];
-        if (tipo === "pais") {
-            json = await newsApi.getHeadlines({ country: busca });
-        } else {
-            json = await newsApi.getEverything({ q: busca });
-        }
-        json.articles.forEach(article => {
-            let favorito = false;
-            props.favoritos.forEach(noticia => {
-                if (article.url === noticia.url)
-                    favorito = true;
-            })
-            let noticia = new Noticia(article.author, article.title, article.description, article.url, article.urlToImage, Helper.retiraLetrasDataHora(article.publishedAt), article.content, article.source.name, favorito);
-            noticias.push(noticia);
-        });
-        if (noticias.length === 0)
-            vazio = true;
-        props.dispatch({ type: 'noticias/Atualizar', noticias: noticias, vazio: vazio, busca: busca, tipo: tipo, primeira: false });
-    }
-}
-
 function atualizar(props, tipo, busca) {
-    obterNoticias(props, tipo, busca);
+    props.dispatch({type: 'noticias/Obter', favoritos: props.favoritos, tipo: tipo, busca: busca})
 }
 
 const Noticias = (props) => {
 
     useEffect(() => {
         if (props.primeira) {
-            obterNoticias(props, props.tipo);
+            props.dispatch({type: 'noticias/Obter', favoritos: props.favoritos, tipo: props.tipo, busca: undefined})
         }
     })
 
@@ -83,7 +46,7 @@ const Noticias = (props) => {
                     (<TextInput value={props.busca} style={styles.input} placeholder="Sua Busca" onChangeText={(text) => { atualizar(props, props.tipo, text) }} />)
                     : (props.tipo === "pais") ?
                         (<Picker selectedValue={props.busca} style={styles.input} itemStyle={{textAlign: "center", fontVariant: ["small-caps"]}} onValueChange={(itemValue) => atualizar(props, props.tipo, itemValue)}>
-                            <Picker.Item label="Brásil" value="br" />
+                            <Picker.Item label="Brasil" value="br" />
                             <Picker.Item label="Estados Unidos" value="us" />
                         </Picker>)
                         :

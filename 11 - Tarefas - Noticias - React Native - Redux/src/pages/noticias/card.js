@@ -19,7 +19,7 @@ const Card = (props) => {
                 <Text style={styles.corpoP}>{props.noticia.descricao}</Text>
             </View>
             <View style={styles.acoes}>
-                <TouchableOpacity style={[styles.acoesLink, { width: 110, borderRightColor: "black", borderRightWidth: 1 }]}
+                <TouchableOpacity style={[styles.acoesLink, { width: 140, borderRightColor: "black", borderRightWidth: 1 }]}
                     onPress={() => {
                         Linking.openURL(props.noticia.url)
                     }}>

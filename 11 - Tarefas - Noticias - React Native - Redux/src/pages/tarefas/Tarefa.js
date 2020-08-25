@@ -10,7 +10,7 @@ const Tarefa = (props) => {
         <View style={styles.card}>
             <View style={styles.tarefa}>
                 <Text style={styles.smallCaps} >Entrega até {props.tarefa.data}</Text>
-                <Text style={[styles.smallCaps, { width: 205 }]} >{props.tarefa.descricao}</Text>
+                <Text style={[styles.smallCaps, { width: 240 }]} >{props.tarefa.descricao}</Text>
             </View>
             <View style={[styles.tarefa, styles.acoes]}>
                 <TouchableOpacity

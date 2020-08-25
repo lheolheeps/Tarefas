@@ -47,7 +47,6 @@ class Tarefas extends React.Component {
                     <TouchableOpacity onPress={() => { this.props.adicionar() }}>
                         <Text style={styles.botao}>Adicionar</Text>
                     </TouchableOpacity>
-                    {/* <Button onPress={() => { this.props.adicionar() }} title="Adicionar"></Button> */}
                 </View>
             </View>
         );

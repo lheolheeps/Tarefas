@@ -1,31 +1,18 @@
-import 'react-native-gesture-handler';
-import React from 'react';
-import { View, Image } from 'react-native';
-import imgCalc from "./src/img/calculadora.png";
 import styles from "./Styles";
 import Tarefas from "./src/pages/tarefas/Tarefas";
 import Noticias from "./src/pages/noticias/Noticias";
-import TarefasReducer from './src/pages/tarefas/reducer';
-import NoticiasReducer from './src/pages/noticias/reducer';
-import { Provider } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
+import 'react-native-gesture-handler';
+import React from 'react';
+import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faNewspaper, faTasks, faCalculator } from '@fortawesome/free-solid-svg-icons';
-import AsyncStorage from '@react-native-community/async-storage';
-import { persistStore, persistReducer } from 'redux-persist';
+import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-
-const persistConfig = {
-  key: 'teste2s',
-  storage: AsyncStorage
-}
-const rootReducers = combineReducers({ TarefasReducer, NoticiasReducer })
-const persistedReducer = persistReducer(persistConfig, rootReducers)
-const store = createStore(persistedReducer);
-const persistor = persistStore(store);
+// TO-DO exportar melhor
+import Store from "./store";
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faNewspaper, faTasks } from '@fortawesome/free-solid-svg-icons';
 
 const TarefasStack = createStackNavigator();
 function TarefasStackScreen() {
@@ -74,6 +61,7 @@ function NoticiasStackScreen() {
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  const {store, persistor} = Store();
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

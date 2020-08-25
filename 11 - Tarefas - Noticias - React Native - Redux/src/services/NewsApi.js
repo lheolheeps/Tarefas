@@ -12,10 +12,6 @@ import Helper from './helper';
 
 class NewsApi {
 
-    baseUrl = "https://newsapi.org/v2/";
-    // apiKey = "c055c4ef28b941ff802f0d8e925ae920";
-    apiKey = "e9ef481ddf964e129e60dd04f939f78c";
-
     /**
      * Obtem as noticias mais quentes do brasil
      * 
@@ -24,13 +20,13 @@ class NewsApi {
      * 
      * @returns {Array} responseJson
      */
-    async getHeadlines(dados = {}) {
+    static async getHeadlines(dados = {}) {
         if (dados.country === undefined) {
             dados.country = "br";
         }
 
-        let url = this.geraUrl("top-headlines", dados);
-        let json = await this.callAPI(url);
+        let url = NewsApi.geraUrl("top-headlines", dados);
+        let json = await NewsApi.callAPI(url);
         return json;
     }
 
@@ -42,13 +38,13 @@ class NewsApi {
      * 
      * @returns {Array} json
      */
-    async getEverything(dados = {}) {
+    static async getEverything(dados = {}) {
         if (!dados.q) {
             dados.q = 'a';
         }
         dados.language = "pt";
-        let url = this.geraUrl("everything", dados);
-        let json = await this.callAPI(url);
+        let url = NewsApi.geraUrl("everything", dados);
+        let json = await NewsApi.callAPI(url);
         return json;
     }
 
@@ -60,10 +56,12 @@ class NewsApi {
      * 
      * @returns {String} url
      */
-    geraUrl(tipo, dados) {
-        let url = this.baseUrl;
+    static geraUrl(tipo, dados) {
+        let baseUrl = "https://newsapi.org/v2/";
+        let apiKey = "e9ef481ddf964e129e60dd04f939f78c";
+        let url = baseUrl;
         url += tipo;
-        url += "?apiKey=" + this.apiKey + "&";
+        url += "?apiKey=" + apiKey + "&";
         url += (dados != null) ? Helper.objectToString(dados, "&") : '';
         return url;
     }
@@ -75,7 +73,7 @@ class NewsApi {
      * 
      * @returns {JSON} responseJson
      */
-    async callAPI(url) {
+    static async callAPI(url) {
         let request = new Request(url);
         let response = await fetch(request);
         let responseJson = [];
