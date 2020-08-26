@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, Linking } from 'react-native';
+import { View, Text, Image, Linking, Alert } from 'react-native';
 import styles from './style.js';
 import imgBlank from "../../img/blank.png";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -28,7 +28,19 @@ const Card = (props) => {
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.acoesLink}
                     onPress={() => {
-                        props.dispatch({ type: "noticias/GerenciarFavoritos", noticia: props.noticia, index: props.index });
+                        if (props.noticia.favorito) {
+                            Alert.alert(
+                                "Desfavoritar",
+                                'Tem certeza que deseja desfavoritar a noticia "' + props.noticia.titulo + '"',
+                                [
+                                    { text: "Cancelar" },
+                                    { text: "OK", onPress: () => props.dispatch({ type: "noticias/GerenciarFavoritos", noticia: props.noticia, index: props.index }) }
+                                ],
+                                { cancelable: true }
+                            )
+                        } else {
+                            props.dispatch({ type: "noticias/GerenciarFavoritos", noticia: props.noticia, index: props.index });
+                        }
                     }}>
                     <Text style={{ fontVariant: ["small-caps"] }}>{(props.noticia.favorito) ? "Desfavoritar " : "Favoritar "}</Text>
                     <FontAwesomeIcon icon={faHeart} color={(props.noticia.favorito) ? "red" : "black"} />

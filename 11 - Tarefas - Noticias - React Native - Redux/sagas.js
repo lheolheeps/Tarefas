@@ -25,7 +25,7 @@ function* obterNoticias(action) {
     }
     if (noticias.length === 0)
         vazio = true;
-    yield put({ type: 'noticias/Atualizar', noticias: noticias, vazio: vazio, busca: action.busca, tipo: action.tipo, primeira: false });
+    yield put({ type: 'noticias/Atualizar', noticias: noticias, vazio: vazio, busca: action.busca, tipo: action.tipo });
 }
 
 function* saga() {

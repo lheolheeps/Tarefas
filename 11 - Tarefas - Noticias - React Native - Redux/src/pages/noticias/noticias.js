@@ -1,19 +1,22 @@
-import React, { useEffect } from 'react';
-import { View, Text, FlatList, TextInput, Picker, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { View, Text, FlatList, TextInput, Picker, TouchableOpacity, RefreshControl } from 'react-native';
 import styles from './style.js';
+import Paises from '../../services/paises';
 import Card from './Card';
 import { connect } from 'react-redux';
-
-function atualizar(props, tipo, busca) {
-    props.dispatch({type: 'noticias/Obter', favoritos: props.favoritos, tipo: tipo, busca: busca})
-}
-
+const paises = Paises();
+console.log(paises);
 const Noticias = (props) => {
+    const [refreshing, setRefreshing] = React.useState(false);
+    const onRefresh = () => {
+        setRefreshing(true);
+        props.atualizar(props.favoritos, props.tipo);
+        setRefreshing(false)
+    };
 
-    useEffect(() => {
-        if (props.primeira) {
-            props.dispatch({type: 'noticias/Obter', favoritos: props.favoritos, tipo: props.tipo, busca: undefined})
-        }
+    React.useEffect(() => {
+        if (props.primeira)
+            props.atualizar(props.favoritos, props.tipo);
     })
 
     return (
@@ -21,21 +24,21 @@ const Noticias = (props) => {
             <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
                 <TouchableOpacity
                     onPress={() => {
-                        atualizar(props, 'pais');
+                        props.atualizar(props.favoritos, 'pais');
                         props.navigation.setOptions({ headerTitle: 'Noticias por Pais' });
                     }}>
                     <Text style={styles.botao}>Pais</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => {
-                        atualizar(props, 'pesquisa')
+                        props.atualizar(props.favoritos, 'pesquisa')
                         props.navigation.setOptions({ headerTitle: 'Pesquisa de Noticias' })
                     }}>
                     <Text style={styles.botao}>Pesquisa</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => {
-                        atualizar(props, 'favoritos')
+                        props.atualizar(props.favoritos, 'favoritos')
                         props.navigation.setOptions({ headerTitle: 'Noticias Favoritas' })
                     }}>
                     <Text style={styles.botao}>Favoritas</Text>
@@ -43,21 +46,25 @@ const Noticias = (props) => {
             </View>
             <View style={styles.opcoes}>
                 {(props.tipo === "pesquisa") ?
-                    (<TextInput value={props.busca} style={styles.input} placeholder="Sua Busca" onChangeText={(text) => { atualizar(props, props.tipo, text) }} />)
+                    (<TextInput value={props.busca} style={styles.input} placeholder="Sua Busca" onChangeText={(text) => { props.atualizar(props.favoritos, props.tipo, text) }} />)
                     : (props.tipo === "pais") ?
-                        (<Picker selectedValue={props.busca} style={styles.input} itemStyle={{textAlign: "center", fontVariant: ["small-caps"]}} onValueChange={(itemValue) => atualizar(props, props.tipo, itemValue)}>
-                            <Picker.Item label="Brasil" value="br" />
-                            <Picker.Item label="Estados Unidos" value="us" />
+                        (<Picker selectedValue={props.busca} style={styles.input} itemStyle={{ textAlign: "center", fontVariant: ["small-caps"] }} onValueChange={(itemValue) => props.atualizar(props.favoritos, props.tipo, itemValue)}>
+                            {paises.map((pais) => {
+                                return <Picker.Item label={pais.nome} value={pais.sigla} />
+                            })}
                         </Picker>)
                         :
                         (<Text></Text>)
                 }
             </View>
             <View style={styles.opcoes}>
-                <Text>{(props.noticias.length === 0) ? (props.vazio) ? "Nenhuma Noticia Encontrada" : "Buscando Noticias" : ""}</Text>
+                <Text>{(props.primeira || props.buscando) ? "Buscando Noticias" : (props.vazio) ? "Nenhuma Noticia Encontrada" : ""}</Text>
             </View>
             <FlatList contentContainerStyle={styles.noticias}
                 data={props.noticias}
+                refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                }
                 renderItem={(item) => {
                     return <Card key={item.item.url + item.item.favorito} tipo={props.tipo} noticia={item.item} index={item.index} />
                 }}
@@ -74,7 +81,14 @@ const mapStateToProps = (state) => {
         tipo: state.NoticiasReducer.tipo,
         busca: state.NoticiasReducer.busca,
         primeira: state.NoticiasReducer.primeira,
+        buscando: state.NoticiasReducer.buscando,
     }
 }
 
-export default connect(mapStateToProps)(Noticias);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        atualizar: (favoritos, tipo, busca) => { dispatch({ type: 'noticias/Obter', favoritos: favoritos, tipo: tipo, busca: busca }) },
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Noticias);

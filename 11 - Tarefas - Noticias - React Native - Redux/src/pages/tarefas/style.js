@@ -81,8 +81,4 @@ export default StyleSheet.create({
   excluir: {
     color: "red",
   },
-
-  concluida: {
-    backgroundColor: "#ddd",
-  },
 });

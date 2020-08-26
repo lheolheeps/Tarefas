@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './style.js';
-import { View, Text, FlatList, TextInput, Button, TouchableOpacity,  StyleSheet } from 'react-native';
+import { View, Text, FlatList, TextInput, TouchableOpacity, Alert } from 'react-native';
 import Tarefa from "./Tarefa";
 import { connect } from 'react-redux';
 import DatePicker from 'react-native-datepicker'
@@ -15,9 +15,6 @@ class Tarefas extends React.Component {
                         return <Tarefa key={item.item.id + item.item.situacao} tarefa={item.item} index={item.index} />
                     }}
                     ref="tarefas"
-                    onContentSizeChange={() => {
-                        this.refs.tarefas.scrollToEnd();
-                    }}
                 />
                 <View style={styles.formulario}>
                     <View style={styles.novo}>
@@ -44,7 +41,21 @@ class Tarefas extends React.Component {
                             onDateChange={(data) => { this.props.guardarData(data) }}
                         />
                     </View>
-                    <TouchableOpacity onPress={() => { this.props.adicionar() }}>
+                    <TouchableOpacity onPress={() => {
+                        if (this.props.novo !== "" && this.props.data !== "") {
+                            this.props.adicionar();
+                            this.refs.tarefas.scrollToEnd();
+                        } else {
+                            Alert.alert(
+                                "Dados Incompletos",
+                                "Preencha a Descrição e a Data",
+                                [
+                                    { text: 'OK' }
+                                ],
+                                { cancelable: true }
+                            )
+                        }
+                    }}>
                         <Text style={styles.botao}>Adicionar</Text>
                     </TouchableOpacity>
                 </View>

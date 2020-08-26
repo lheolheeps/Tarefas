@@ -4,7 +4,7 @@ const inicial = {
     noticias: [],
     favoritos: [],
     vazio: false,
-    busca: undefined,
+    busca: 'br',
     tipo: "pais",
     primeira: true
 }
@@ -28,7 +28,8 @@ const reducer = (state = inicial, action) => {
             return {
                 ...state,
                 noticias: noticias,
-                favoritos: favoritos
+                favoritos: favoritos,
+                vazio: (noticias.length === 0) ? true : false,
             }
         case "noticias/Atualizar":
             let novasNoticias = [...action.noticias];
@@ -38,7 +39,16 @@ const reducer = (state = inicial, action) => {
                 vazio: action.vazio,
                 busca: action.busca,
                 tipo: action.tipo,
-                primeira: action.primeira
+                primeira: false,
+                buscando: false,
+            }
+        case "noticias/Obter":
+            return {
+                ...state,
+                buscando: true,
+                noticias: [],
+                tipo: action.tipo,
+                busca: action.busca,
             }
         default:
             return state;
