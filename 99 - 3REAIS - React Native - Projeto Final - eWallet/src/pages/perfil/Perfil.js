@@ -7,9 +7,9 @@ import Header from '../../Components/header/perfil';
 
 const Perfil = (props) => {
     return (
-        <View style={styles.container}>
+        <>
             <Header nome="Felipe Assunção" img="https://via.placeholder.com.br/150" />
-            <ScrollView>
+            <ScrollView style={styles.container}>
                 <Button style={{ marginTop: 35 }} background='#D60F0B'>Convide e Ganhe</Button>
                 <View style={styles.opcoes}>
                     <Text style={styles.menu}>Minha Conta</Text>
@@ -41,7 +41,7 @@ const Perfil = (props) => {
                     </TouchableOpacity>
                 </View>
             </ScrollView>
-        </View>
+        </>
     );
 
 };
