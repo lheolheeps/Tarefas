@@ -36,9 +36,11 @@ const Perfil = (props) => {
                     <TouchableOpacity>
                         <Text style={[styles.subMenu, styles.destacado]}>Desativar a Conta</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Text style={styles.sair}>Sair</Text>
-                    </TouchableOpacity>
+                    <View style={styles.sair}>
+                        <TouchableOpacity>
+                            <Text style={styles.botaoSair}>Sair</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </ScrollView>
         </>

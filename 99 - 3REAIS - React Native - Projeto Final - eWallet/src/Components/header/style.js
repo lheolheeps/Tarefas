@@ -11,8 +11,8 @@ export default StyleSheet.create({
         alignItems: 'center',
     },
     espacosa: {
-        paddingTop: 25,
-        paddingBottom: 25,
+        paddingTop: 20,
+        paddingBottom: 20,
     },
     afastado: {
         marginLeft: 20,
@@ -27,11 +27,11 @@ export default StyleSheet.create({
     },
     saldo: {
         fontSize: 40,
-        color: '#D60F0B',
+        color: 'green',
         marginBottom: 5,
     },
     imagem: {
-        borderRadius: 90/2,
+        borderRadius: 45,
         width: 90,
         height: 90,
         marginBottom: 10,

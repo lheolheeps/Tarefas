@@ -7,7 +7,7 @@ export default StyleSheet.create({
         paddingBottom: 50,
         paddingLeft: 19,
         paddingRight: 19,
-        backgroundColor: "lightgray",
+        // backgroundColor: "lightgray",
     },
 })
 

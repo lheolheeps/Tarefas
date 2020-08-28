@@ -3,14 +3,15 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     container: {
         flexGrow: 1,
-        backgroundColor: "lightgray",
+        // backgroundColor: "lightgray",
     },
     linha: {
     },
-    menu:{
+    menu: {
         paddingLeft: 15,
         marginTop: 20,
-        marginBottom: 5,
+        paddingBottom: 5,
+        borderBottomWidth: 1,
     },
     subMenu: {
         paddingBottom: 10,
@@ -18,17 +19,19 @@ export default StyleSheet.create({
         paddingTop: 10,
         backgroundColor: 'white',
         fontSize: 17,
-        borderTopWidth: 1,
+        borderBottomWidth: 1,
     },
     destacado: {
         color: '#D60F0B',
     },
-    sair: {
+    botaoSair: {
         fontSize: 22,
-        textAlign: "center",
+        color: '#D60F0B',
+    },
+    sair: {
+        alignItems: 'center',
         marginTop: 30,
         marginBottom: 30,
-        color: '#D60F0B',
     },
     texto: {
         fontSize: 20,

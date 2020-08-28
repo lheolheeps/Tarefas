@@ -11,10 +11,12 @@ import Deposito from './src/pages/deposito';
 import Pagamento from './src/pages/pagamento';
 import Cartoes from './src/pages/cartoes';
 import Perfil from './src/pages/perfil';
+import Login from  './src/pages/login';
 
 const Tab = createBottomTabNavigator();
-export default function App() {
+export default function App() { 
   return (
+    // <Login />
     <NavigationContainer>
       <View style={styles.body}>
         <Tab.Navigator tabBarOptions={{ tabStyle: { paddingBottom: 2 }, activeTintColor: 'black', inactiveTintColor: 'gray', }}>

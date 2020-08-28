@@ -21,7 +21,7 @@ const styles =  StyleSheet.create({
     touchable: {
         flexDirection: 'row',
         justifyContent: 'center',
-        backgroundColor: 'lightgray',
+        // backgroundColor: 'lightgray',
     },
     botao: {
         textAlign: "center",

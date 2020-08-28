@@ -14,7 +14,6 @@ const Cartoes = (props) => {
             <Header titulo="Depositos" />
             <View style={styles.deposito}>
                 <Text style={styles.texto}>Quanto você quer depositar?</Text>
-                {/* <Text style={styles.valor}>R$ 0,00|</Text> */}
                 <TextInputMask
                     style={styles.valor}
                     options={{
