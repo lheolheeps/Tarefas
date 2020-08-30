@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "3REAIS",
-    "slug": "3REAIS",
+    "name": "3REAI$",
+    "slug": "3REAI$",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ddd"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
