@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "3REAI$",
-    "slug": "3REAI$",
+    "name": "3REAIS",
+    "slug": "3REAIS",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/_icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
