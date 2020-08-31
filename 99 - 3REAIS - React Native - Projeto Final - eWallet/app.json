@@ -4,11 +4,17 @@
     "slug": "3REAIS",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/_icon.png",
+    "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
+      "ldpi": "./assets/splash.png",
+      "mdpi": "./assets/splash.png",
+      "hdpi": "./assets/splash.png",
+      "xhdpi": "./assets/splash.png",
+      "xxhdpi": "./assets/splash.png",
+      "xxxhdpi": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ddd"
+      "backgroundColor": "#c3c3c3"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

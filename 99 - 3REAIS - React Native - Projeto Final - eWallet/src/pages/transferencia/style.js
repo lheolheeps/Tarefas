@@ -3,12 +3,12 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     container: { 
         flex: 1, 
-        alignItems: 'center'
+        alignItems: 'center',
         // backgroundColor: "lightgray",
+        marginTop: 50
     },
     texto: {
-        fontSize: 20,
-        marginTop: 50
+        fontSize: 20
     },
     input: {
         backgroundColor: "white",

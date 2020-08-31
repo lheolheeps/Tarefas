@@ -1,87 +1,53 @@
 import React from 'react';
-import { View, FlatList } from 'react-native';
+import { connect } from 'react-redux';
+import { FlatList, RefreshControl } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
 import styles from './style.js';
 import Header from '../../Components/header/inicio';
 import Extrato from './Extrato';
+import Comprovante from "../comprovante";
+
+
+const Stack = createStackNavigator();
+function StackScreen() {
+    return (
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Inicio" component={InicioConectado} />
+            <Stack.Screen name="Comprovante" component={Comprovante} />
+        </Stack.Navigator>
+    )
+}
 
 const Inicio = (props) => {
+    const [refreshing, setRefreshing] = React.useState(false);
     return (
         <>
-            <Header saldo="396,00" />
+            <Header saldo={props.usuario.saldo} />
             <FlatList style={styles.container}
-                data={[
-                    {
-                        id: '1',
-                        tipo: 4,
-                        nome: "Transferencia Enviada",
-                        origem: "Erilane Silva dos Santos",
-                        valor: "20,00",
-                        data: "20/20/2020"
-                    },
-                    {
-                        id: '2',
-                        tipo: 1,
-                        nome: "Deposito por boleto",
-                        origem: "",
-                        valor: "200,00",
-                        data: "20/20/2020"
-                    },
-                    {
-                        id: '3',
-                        tipo: 2,
-                        nome: "Pagamento de Boletos",
-                        origem: "Celesc DIstribuidora",
-                        valor: "2,00",
-                        data: "20/20/2020"
-                    },
-                    {
-                        id: '4',
-                        tipo: 3,
-                        nome: "Transferencia Recebida",
-                        origem: "Erilane Silva dos Santos",
-                        valor: "20,00",
-                        data: "20/20/2020"
-                    },
-                    {
-                        id: '5',
-                        tipo: 4,
-                        nome: "Transferencia Enviada",
-                        origem: "Erilane Silva dos Santos",
-                        valor: "20,00",
-                        data: "20/20/2020"
-                    },
-                    {
-                        id: '6',
-                        tipo: 1,
-                        nome: "Deposito por boleto",
-                        origem: "",
-                        valor: "200,00",
-                        data: "20/20/2020"
-                    },
-                    {
-                        id: '7',
-                        tipo: 2,
-                        nome: "Pagamento de Boletos",
-                        origem: "Celesc DIstribuidora",
-                        valor: "2,00",
-                        data: "20/20/2020"
-                    },
-                    {
-                        id: '8',
-                        tipo: 3,
-                        nome: "Transferencia Recebida",
-                        origem: "Erilane Silva dos Santos",
-                        valor: "20,00",
-                        data: "20/20/2020"
-                    },
-                ]}
-                renderItem={({item, index}) => {
-                    return <Extrato key={item.id} transacao={item} index={index} />
+                data={props.transacoes}
+                refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={() => {
+                        setRefreshing(true);
+                        setTimeout(() => {
+                            setRefreshing(false);
+                        }, 1500);
+                    }} />
+                }
+                renderItem={({ item, index }) => {
+                    return <Extrato key={item.id} navigation={props.navigation} transacao={item} index={index} />
                 }}
             />
         </>
     );
-
 };
 
-export default Inicio;
+const mapStateToProps = (state) => {
+    return {
+        usuario: state.usuario,
+        transacoes: state.transacoes,
+    }
+};
+
+const InicioConectado = connect(mapStateToProps)(Inicio)
+
+export default StackScreen;

@@ -9,7 +9,9 @@ export default StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         padding: 15,
-        borderTopWidth: 1
+        borderTopWidth: 1,
+        alignItems: "center",
+        justifyContent: "space-between"
     },
     imagem: {
         borderRadius: 35,

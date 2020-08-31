@@ -1,57 +1,19 @@
-import 'react-native-gesture-handler';
 import React from 'react';
-import { View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faHome, faArrowAltCircleDown, faDollarSign, faCreditCard, faUser } from '@fortawesome/free-solid-svg-icons';
-import styles from "./style";
-import Inicio from './src/pages/inicio';
-import Deposito from './src/pages/deposito';
-import Pagamento from './src/pages/pagamento';
-import Cartoes from './src/pages/cartoes';
-import Perfil from './src/pages/perfil';
-import Login from  './src/pages/login';
+import Routes from './src/services/routes';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+// TO-DO exportar melhor
+import Store from "./src/services/store";
 
-const Tab = createBottomTabNavigator();
-export default function App() { 
+export default function App() {
+  const { store, persistor } = Store();
   return (
-    // <Login />
-    <NavigationContainer>
-      <View style={styles.body}>
-        <Tab.Navigator tabBarOptions={{ tabStyle: { paddingBottom: 2 }, activeTintColor: 'black', inactiveTintColor: 'gray', }}>
-          <Tab.Screen name="Inicio" component={Inicio}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <FontAwesomeIcon icon={faHome} color={color} size={size} />
-              ),
-            }} />
-          <Tab.Screen name="Deposito" component={Deposito}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <FontAwesomeIcon icon={faArrowAltCircleDown} color={color} size={size} />
-              ),
-            }} />
-          <Tab.Screen name="Pagamento" component={Pagamento}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <FontAwesomeIcon icon={faDollarSign} color={color} size={size} />
-              ),
-            }} />
-          <Tab.Screen name="Cartões" component={Cartoes}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <FontAwesomeIcon icon={faCreditCard} color={color} size={size} />
-              ),
-            }} />
-          <Tab.Screen name="Perfil" component={Perfil}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <FontAwesomeIcon icon={faUser} color={color} size={size} />
-              ),
-            }} />
-        </Tab.Navigator>
-      </View>
-    </NavigationContainer>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Routes />
+      </PersistGate>
+    </Provider >
   );
-}
+} 
+
+

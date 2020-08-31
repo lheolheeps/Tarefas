@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { View, TouchableOpacity } from 'react-native';
 import Text from '../../Components/Text';
 import styles from './style.js';
 import Header from '../../Components/header/simples';

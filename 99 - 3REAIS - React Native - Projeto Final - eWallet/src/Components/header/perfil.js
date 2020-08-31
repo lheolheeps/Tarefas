@@ -8,7 +8,7 @@ import styles from './style.js';
 const Perfil = (props) => {
     return (
         <View style={[styles.header, styles.centralizado, styles.espacosa]}>
-            <Image style={styles.imagem} source={foto} />
+            <Image style={styles.imagem} source={{uri: props.foto}} />
             <Text style={styles.titulo}>{props.nome}</Text>
         </View>
     );
