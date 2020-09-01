@@ -13,11 +13,14 @@ import Pagamento from '../pages/pagamento';
 import Cartoes from '../pages/cartoes';
 import Perfil from '../pages/perfil';
 import Login from '../pages/login';
+import OnBoarding from '../pages/onboarding/';
 
 const Tab = createBottomTabNavigator();
 const Routes = (props) => {
     if (!props.logado) {
         return (<View style={styles.body}><Login /></View>);
+    } else if (props.primeira) {
+        return (<OnBoarding />);
     } else {
         return (
             <NavigationContainer>
@@ -63,6 +66,7 @@ const Routes = (props) => {
 const mapStateToProps = (state) => {
     return {
         logado: (state.usuario) ? true : false,
+        primeira: state.primeira,
     }
 };
 
