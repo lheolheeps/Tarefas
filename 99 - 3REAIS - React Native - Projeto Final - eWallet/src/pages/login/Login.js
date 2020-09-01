@@ -14,7 +14,7 @@ const Login = (props) => {
     React.useEffect(() => {
         if (props.falha) {
             Alert.alert('Dados Incorretos', "Ops, não encontramos essa combinação de Numero e Senha.")
-            props.dispatch({ type: "login/Reset" });
+            props.dispatch({ type: "falha/Reset" });
             setSenha('');
         }
     })
@@ -47,7 +47,7 @@ const Login = (props) => {
                         if (login !== '' && senha !== '') {
                             props.dispatch({ type: "login/Logar", login: login, senha: senha });
                         } else {
-                            Alert.alert('Dados Incompletos', "Ops, informe todos os dados.");
+                            Alert.alert('Dados Incompletos', "Precisamos que você informe o Numero e a Senha.");
                         }
                     }}>
                     Quero Entrar

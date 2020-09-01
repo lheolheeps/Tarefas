@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { View, Image, Share } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import Text from '../../Components/Text';
@@ -13,6 +14,12 @@ import { faBarcode, faArrowAltCircleDown } from '@fortawesome/free-solid-svg-ico
 const Comprovante = (props) => {
     const route = useRoute();
     const transacao = route.params.transacao;
+
+    React.useEffect(() => {
+        if (props.comprovar)
+            props.dispatch({ type: 'comprovante/Reset' })
+    })
+
     return (
         <View style={styles.container}>
             <Header titulo="Comprovante" />
@@ -59,4 +66,10 @@ const Comprovante = (props) => {
 
 };
 
-export default Comprovante;
+const mapStateToProps = (state) => {
+    return {
+        comprovar: state.comprovar,
+    }
+};
+
+export default connect(mapStateToProps)(Comprovante);

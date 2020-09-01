@@ -44,7 +44,7 @@ const Deposito = (props) => {
                         props.dispatch({ type: 'deposito/Depositar', valor: valor })
                         setValor('0');
                     }else{
-                        Alert.alert('Dados Inconpletos', 'Digite algum valor para deposito')
+                        Alert.alert('Dados Incompletos', 'Precisamos que você informe um valor para a geração do Boleto')
                     }
                 }}>Gerar Boleto</Button>
             </View>

@@ -20,7 +20,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         padding: 15,
-        justifyContent: "space-evenly",
+        justifyContent: "center",
         alignItems: "center",
     },
     imagem: {

@@ -6,7 +6,7 @@
 const mock = {
     usuario: {
         nome: "Felipe Assunção'",
-        saldo: "397,20",
+        saldo: "397,10",
         foto: "https://felipeassuncao.com/curriculum/images/lheo.png",
     },
     transacoes: [
@@ -15,8 +15,8 @@ const mock = {
             tipo: 4,
             nome: "Transferencia Enviada",
             origem: "Ricardo Gonçalves",
-            valor: "19,80",
-            data: "03/9/2020"
+            valor: "19,90",
+            data: "3/9/2020"
         },
         {
             id: '2',
@@ -24,7 +24,7 @@ const mock = {
             nome: "Transferencia Recebida",
             origem: "Sergio Segaty",
             valor: "200,00",
-            data: "03/9/2020"
+            data: "3/9/2020"
         },
         {
             id: '3',
@@ -32,7 +32,7 @@ const mock = {
             nome: "Pagamento de Boletos",
             origem: "Celesc DIstribuidora",
             valor: "2,00",
-            data: "03/9/2020"
+            data: "3/9/2020"
         },
         {
             id: '4',
@@ -40,7 +40,7 @@ const mock = {
             nome: "Transferencia Recebida",
             origem: "Heitor Silveira",
             valor: "21,00",
-            data: "03/9/2020"
+            data: "3/9/2020"
         },
         {
             id: '5',
@@ -48,7 +48,7 @@ const mock = {
             nome: "Transferencia Enviada",
             origem: "Andre Aragon",
             valor: "20,00",
-            data: "03/9/2020"
+            data: "3/9/2020"
         },
         {
             id: '6',
@@ -56,7 +56,7 @@ const mock = {
             nome: "Deposito por boleto",
             origem: "",
             valor: "200,00",
-            data: "03/9/2020"
+            data: "3/9/2020"
         },
         {
             id: '7',
@@ -64,7 +64,7 @@ const mock = {
             nome: "Transferencia Enviada",
             origem: "Claudionor Silva",
             valor: "2,00",
-            data: "03/9/2020"
+            data: "3/9/2020"
         },
         {
             id: '8',
@@ -72,7 +72,7 @@ const mock = {
             nome: "Transferencia Recebida",
             origem: "Lucas Martins",
             valor: "20,00",
-            data: "03/9/2020"
+            data: "3/9/2020"
         },
     ],
     pessoas: [

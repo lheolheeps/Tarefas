@@ -6,7 +6,8 @@ const inicial = {
     transacoes: [],
     pessoas: [],
     falha: false,
-    id: '9',
+    id: 9,
+    comprovar: false,
 }
 
 const reducer = (state = inicial, action) => {
@@ -15,6 +16,7 @@ const reducer = (state = inicial, action) => {
     let novaTransacao = {};
     let date = new Date();
     let dataAtual = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+    let novoSaldo;
     switch (action.type) {
         case 'login/Logar':
             if (action.login === "(47) 99269-1973" && action.senha === "proway") {
@@ -30,14 +32,14 @@ const reducer = (state = inicial, action) => {
                     falha: true,
                 }
             }
-        case 'login/Reset':
+        case 'falha/Reset':
             return {
                 ...state,
                 falha: false,
             }
         case 'deposito/Depositar':
             novaTransacao = {
-                id: ++state.id,
+                id: (++state.id).toString(),
                 tipo: 1,
                 nome: "Deposito por boleto",
                 origem: "",
@@ -53,38 +55,51 @@ const reducer = (state = inicial, action) => {
                 id: novaTransacao.id
             }
         case 'transferencia/Transferir':
+            novoSaldo = Helper.calculaBR(usuario.saldo, '-', Helper.retiraR$(action.valor));
+            if(novoSaldo.substr(0,1) === '-')
+                return { ...state, falha: true, }
             novaTransacao = {
-                id: ++state.id,
+                id: (++state.id).toString(),
                 tipo: 4,
                 nome: "Transferencia Enviada",
-                origem: action.nome,
+                origem: action.amigo,
                 valor: Helper.retiraR$(action.valor),
                 data: dataAtual
             }
             transacoes.unshift(novaTransacao);
-            usuario.saldo = Helper.calculaBR(usuario.saldo, '-', Helper.retiraR$(action.valor));
+            usuario.saldo = novoSaldo;
             return {
                 ...state,
                 transacoes: transacoes,
                 usuario: usuario,
-                id: novaTransacao.id
+                id: novaTransacao.id,
+                comprovar: true,
             }
         case 'boleto/Pagar':
+            novoSaldo = Helper.calculaBR(usuario.saldo, '-', action.valor);
+            if(novoSaldo.substr(0,1) === '-')
+                return { ...state, falha: true, }
             novaTransacao = {
-                id: ++state.id,
+                id: (++state.id).toString(),
                 tipo: 2,
                 nome: "Pagamento de Boletos",
                 origem: action.nome,
-                valor: Helper.retiraR$(action.valor),
+                valor: action.valor,
                 data: dataAtual
             }
             transacoes.unshift(novaTransacao);
-            usuario.saldo = Helper.calculaBR(usuario.saldo, '-', Helper.retiraR$(action.valor));
+            usuario.saldo = novoSaldo;
             return {
                 ...state,
                 transacoes: transacoes,
                 usuario: usuario,
-                id: novaTransacao.id
+                id: novaTransacao.id,
+                comprovar: true,
+            }
+        case 'comprovante/Reset':
+            return {
+                ...state,
+                comprovar: false,
             }
         case 'perfil/Deslogar':
             return {

@@ -46,7 +46,7 @@ const Perfil = (props) => {
                     <View style={styles.sair}>
                         <TouchableOpacity
                             onPress={() => {
-                                Alert.alert("Deslogar", "Quer mesmo deslogar?",
+                                Alert.alert("Deslogar", "Tem certeza que deseja Sair? \nAqui você tem 100% do CDI e faz pagamentos com muita facilidade.",
                                     [
                                         { text: "Cancelar" },
                                         { text: "Confirmar", onPress: () => props.dispatch({ type: 'perfil/Deslogar' }) }
