@@ -58,7 +58,7 @@ const Comprovante = (props) => {
                 onPress={() =>
                     Share.share({
                         message:
-                            'Use o 3REAIS para pagar Amigos, boletos e muito mais. Ao criar sua conta insira o codigo 3R-FEAS e ganha de volta os primeiros R$ 10,00 gastos. Baixe Agora https://3reais.com.br/convite?cod=3R-FEAS',
+                            'Use o 3REAIS para pagar Amigos, boletos e muito mais. Ao criar sua conta insira o codigo 3R-FEAS e ganhe de volta os primeiros R$ 10,00 gastos. Baixe Agora https://3reais.com.br/convite?cod=3R-FEAS',
                     })
                 }>Indique e Ganhe</Button>
         </View>

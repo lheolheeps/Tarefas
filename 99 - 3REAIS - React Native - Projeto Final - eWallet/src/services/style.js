@@ -4,7 +4,7 @@ import Constants from 'expo-constants';
 export default StyleSheet.create({
     body: {
         flex:1,
-        // paddingTop: Constants.statusBarHeight,
+        paddingTop: Constants.statusBarHeight,
         backgroundColor: "#ddd",
     },
 })

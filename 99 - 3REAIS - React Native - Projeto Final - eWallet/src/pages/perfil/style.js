@@ -36,5 +36,18 @@ export default StyleSheet.create({
     texto: {
         fontSize: 20,
     },
+    by: {
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: 20,
+    },
+    imagem: {
+        width: 25,
+        height: 25,
+    },
+    versao: {
+        fontSize: 9,
+        marginTop: 5,
+    },
 })
 

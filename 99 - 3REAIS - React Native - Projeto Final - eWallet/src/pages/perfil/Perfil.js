@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, ScrollView, TouchableOpacity, Alert, Share } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Alert, Share, Image } from 'react-native';
 import Text from '../../Components/Text';
 import Button from '../../Components/Button';
 import styles from './style.js';
 import Header from '../../Components/header/perfil';
+import icon from '../../img/icon.png';
 
 const Perfil = (props) => {
     return (
@@ -15,7 +16,7 @@ const Perfil = (props) => {
                     onPress={() =>
                         Share.share({
                             message:
-                                'Use o 3REAIS para pagar Amigos, boletos e muito mais. Ao criar sua conta insira o codigo 3R-FEAS e ganha de volta os primeiros R$ 10,00 gastos. Baixe Agora https://3reais.com.br/convite?cod=3R-FEAS',
+                                'Use o 3REAIS para pagar Amigos, boletos e muito mais. Ao criar sua conta insira o codigo 3R-FEAS e ganhe de volta os primeiros R$ 10,00 gastos. Baixe Agora https://3reais.com.br/convite?cod=3R-FEAS',
                         })
                     }>Convide e Ganhe</Button>
                 <View style={styles.opcoes}>
@@ -55,6 +56,10 @@ const Perfil = (props) => {
                             }}>
                             <Text style={styles.botaoSair}>Sair</Text>
                         </TouchableOpacity>
+                    </View>
+                    <View style={styles.by}>
+                        <Image style={styles.imagem} source={icon} />
+                        <Text style={styles.versao}>Versão 1.47.22</Text>
                     </View>
                 </View>
             </ScrollView>

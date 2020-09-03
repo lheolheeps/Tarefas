@@ -9,7 +9,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         padding: 15,
-        borderTopWidth: 1,
+        borderBottomWidth: 1,
         alignItems: "center",
         justifyContent: "space-between"
     },
@@ -20,6 +20,16 @@ export default StyleSheet.create({
     },
     valor: {
         fontSize: 15
-    }
+    },
+    filtro: {
+        flexDirection: "row",
+    },
+    busca: {
+        textAlign: "center",
+        borderWidth: 1,
+        width: "50%",
+        height: 40,
+        backgroundColor: "white",
+    },
 })
 

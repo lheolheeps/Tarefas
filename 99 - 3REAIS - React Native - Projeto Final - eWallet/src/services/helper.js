@@ -128,16 +128,19 @@ class Helper {
     }
 
     static dadosFromBoleto(boleto) {
+        boleto = boleto.replace(/\D/g, '');
+        if(boleto.length !== 47)
+            throw('Boleto precisa ter exatamente 44 digitos');
         let numBanco = boleto.substr(0, 3);
         let banco = bancos.find(banco => banco.numero === numBanco);
         let nomeBanco = (banco) ? banco.nome : 'Não Encontrado';
 
-        let coutVencimento = boleto.substr(40, 4);
+        let coutVencimento = boleto.substr(33, 4);
         let date = new Date('10/07/1997');
         date.setTime(date.getTime() + (coutVencimento * 24 * 60 * 60 * 1000));
         let vencimento = ("0" + (date.getDate())).slice(-2) + '/' + ("0" + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear();
 
-        let totalValor = boleto.substr(44, 10);
+        let totalValor = boleto.substr(37, 10);
         let valor = (parseFloat(totalValor) / 100).toFixed(2).replace('.', ',');
 
         return {

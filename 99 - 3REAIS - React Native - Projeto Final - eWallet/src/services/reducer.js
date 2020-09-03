@@ -9,6 +9,8 @@ const inicial = {
     id: 9,
     comprovar: false,
     primeira: true,
+    inicio: '9',
+    fim: '2020',
 }
 
 const reducer = (state = inicial, action) => {
@@ -20,24 +22,25 @@ const reducer = (state = inicial, action) => {
     let novoSaldo;
     switch (action.type) {
         case 'login/Logar':
-            if (action.login === "(99) 99999-9999" && action.senha === "proway") {
-                return {
-                    ...state,
-                    usuario: {...mock.usuario},
-                    transacoes: mock.transacoes,
-                    pessoas: mock.pessoas,
-                }
-            } else {
-                return {
-                    ...state,
-                    falha: true,
-                }
-            }
-        case 'falha/Reset':
+            // if (action.login === "(99) 99999-9999" && action.senha === "proway") {
             return {
                 ...state,
-                falha: false,
+                usuario: { ...mock.usuario },
+                transacoes: mock.transacoes,
+                pessoas: mock.pessoas,
             }
+        // } else {
+        //     return {
+        //         ...state,
+        //         falha: true,
+        //     }
+        // }
+        case 'falha/Reset':
+            return { ...state, falha: false, }
+        case 'extrato/Filtrar':
+            console.log(action)
+            
+            return state
         case 'deposito/Depositar':
             novaTransacao = {
                 id: (++state.id).toString(),
@@ -98,21 +101,11 @@ const reducer = (state = inicial, action) => {
                 comprovar: true,
             }
         case 'comprovante/Reset':
-            return {
-                ...state,
-                comprovar: false,
-            }
+            return { ...state, comprovar: false, }
         case 'onboarding/Finalizar':
-            return {
-                ...state,
-                primeira: false,
-            }
+            return { ...state, primeira: false, }
         case 'perfil/Deslogar':
-            return {
-                ...state,
-                usuario: undefined,
-                transacoes: []
-            }
+            return { ...state, usuario: undefined, transacoes: [] }
         default:
             return state;
     }

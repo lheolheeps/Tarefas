@@ -22,6 +22,7 @@ export default StyleSheet.create({
     },
     texto: {
         fontSize: 20,
+        textAlign: "center",
     },
 })
 

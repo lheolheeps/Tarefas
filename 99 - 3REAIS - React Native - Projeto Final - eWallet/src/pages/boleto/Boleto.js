@@ -16,7 +16,7 @@ const Boleto = (props) => {
 
     React.useEffect(() => {
         if (props.falha) {
-            Alert.alert('Saldo Insuficiente', "Seu saldo não é suficiente para realizar essa transferencia. Você pode adicionar, sempre que quiser, no menu Depositos. \n\nVale Lembrar que o Saldo rende 100% do CDI. ;)")
+            Alert.alert('Saldo Insuficiente', "Seu saldo não é suficiente para realizar esse pagamento. Você pode adicionar, sempre que quiser, no menu Depositos. \n\nVale Lembrar que o Saldo rende 100% do CDI. ;)")
             props.dispatch({ type: "falha/Reset" });
         }
         if (props.comprovar)
@@ -54,7 +54,7 @@ const Boleto = (props) => {
                             { cancelable: true }
                         )
                     } else {
-                        Alert.alert('Dados Inconpletos', 'Precisamos que você informe o numero completo do boleto')
+                        Alert.alert('Dados Incompletos', 'Precisamos que você informe o numero completo do boleto')
                     }
                 }}>Pagar Boleto</Button>
             </View>
