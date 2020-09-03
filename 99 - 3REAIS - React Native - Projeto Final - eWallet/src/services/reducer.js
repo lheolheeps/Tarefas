@@ -8,6 +8,7 @@ const inicial = {
     falha: false,
     id: 9,
     comprovar: false,
+    primeira: true,
 }
 
 const reducer = (state = inicial, action) => {
@@ -19,10 +20,10 @@ const reducer = (state = inicial, action) => {
     let novoSaldo;
     switch (action.type) {
         case 'login/Logar':
-            if (action.login === "(47) 99269-1973" && action.senha === "proway") {
+            if (action.login === "(99) 99999-9999" && action.senha === "proway") {
                 return {
                     ...state,
-                    usuario: mock.usuario,
+                    usuario: {...mock.usuario},
                     transacoes: mock.transacoes,
                     pessoas: mock.pessoas,
                 }
@@ -56,7 +57,7 @@ const reducer = (state = inicial, action) => {
             }
         case 'transferencia/Transferir':
             novoSaldo = Helper.calculaBR(usuario.saldo, '-', Helper.retiraR$(action.valor));
-            if(novoSaldo.substr(0,1) === '-')
+            if (novoSaldo.substr(0, 1) === '-')
                 return { ...state, falha: true, }
             novaTransacao = {
                 id: (++state.id).toString(),
@@ -77,7 +78,7 @@ const reducer = (state = inicial, action) => {
             }
         case 'boleto/Pagar':
             novoSaldo = Helper.calculaBR(usuario.saldo, '-', action.valor);
-            if(novoSaldo.substr(0,1) === '-')
+            if (novoSaldo.substr(0, 1) === '-')
                 return { ...state, falha: true, }
             novaTransacao = {
                 id: (++state.id).toString(),
@@ -100,6 +101,11 @@ const reducer = (state = inicial, action) => {
             return {
                 ...state,
                 comprovar: false,
+            }
+        case 'onboarding/Finalizar':
+            return {
+                ...state,
+                primeira: false,
             }
         case 'perfil/Deslogar':
             return {
