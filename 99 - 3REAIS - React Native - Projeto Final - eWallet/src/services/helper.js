@@ -130,7 +130,7 @@ class Helper {
     static dadosFromBoleto(boleto) {
         boleto = boleto.replace(/\D/g, '');
         if(boleto.length !== 47)
-            throw('Boleto precisa ter exatamente 44 digitos');
+            throw('Boleto precisa ter exatamente 47 digitos');
         let numBanco = boleto.substr(0, 3);
         let banco = bancos.find(banco => banco.numero === numBanco);
         let nomeBanco = (banco) ? banco.nome : 'Não Encontrado';

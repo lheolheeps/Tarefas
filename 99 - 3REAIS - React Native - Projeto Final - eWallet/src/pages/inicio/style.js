@@ -23,13 +23,20 @@ export default StyleSheet.create({
     },
     filtro: {
         flexDirection: "row",
+        borderWidth: 1,
+        justifyContent: "space-evenly"
+    },
+    touch:{
+        borderRightWidth: 1,
+        backgroundColor: "#ccc",
+        height: 40,
+        width: '33.3%',
+        justifyContent: "center",
     },
     busca: {
+        paddingTop: 20,
+        paddingBottom: 20,
         textAlign: "center",
-        borderWidth: 1,
-        width: "50%",
-        height: 40,
-        backgroundColor: "white",
     },
 })
 

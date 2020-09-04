@@ -38,9 +38,18 @@ const reducer = (state = inicial, action) => {
         case 'falha/Reset':
             return { ...state, falha: false, }
         case 'extrato/Filtrar':
-            console.log(action)
-            
-            return state
+            if (action.filtro === "Tudo")
+                return { ...state, filtro: undefined, }
+            if (action.filtro === "Anterior")
+                action.filtro = date.getMonth();
+            let filtro = transacoes.filter((transacao) => {
+                if (transacao.data.split('/')[1] == action.filtro)
+                    return true;
+            });
+            return {
+                ...state,
+                filtro: filtro,
+            }
         case 'deposito/Depositar':
             novaTransacao = {
                 id: (++state.id).toString(),
